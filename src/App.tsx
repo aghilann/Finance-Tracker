@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, createContext } from "react";
 import "./App.css";
 import { NavigationBar } from "./NavigationBar/NavigationBar";
 import {
@@ -6,15 +6,16 @@ import {
   ColorSchemeProvider,
   ColorScheme,
   MantineTheme,
+  Button,
 } from "@mantine/core";
 import { useHotkeys, useLocalStorage } from "@mantine/hooks";
-import { links } from "./Data/data";
+import { links } from "./Data/NavbarData";
 import { _DEFAULT_THEME } from "./Data/ThemeObject";
-import Auth from "./Auth";
 import { supabase } from "./supabaseClient";
-import Account from "./Account";
 
-function App() {
+export const UserContext = createContext(null);
+
+export function App() {
   const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
     key: "mantine-color-scheme",
     defaultValue: "light",
@@ -25,15 +26,22 @@ function App() {
 
   useHotkeys([["mod+J", () => toggleColorScheme()]]);
 
-  const [session, setSession] = useState(null);
+  const [user, setUser] = useState(null);
+
+  const [investments, setInvestments] = useState([]);
 
   useEffect(() => {
-    setSession(supabase.auth.session());
-
-    supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-    });
+    fetchInvestments();
   }, []);
+
+  async function fetchInvestments() {
+    let { data } = await supabase
+      .from("UserFinanceData")
+      .select("*")
+      .eq("UserID", "5052e355-6387-423c-9cc6-d0b337af37aa");
+    setInvestments(data);
+    console.log(data);
+  }
 
   return (
     <ColorSchemeProvider
@@ -42,16 +50,12 @@ function App() {
     >
       <MantineProvider theme={{ ..._DEFAULT_THEME, colorScheme: colorScheme }}>
         <div className="App">
-          <NavigationBar links={links}></NavigationBar>
-          {!session ? (
-            <Auth />
-          ) : (
-            <Account key={session.user.id} session={session} />
-          )}
+          <UserContext.Provider value={{ user, setUser }}>
+            <NavigationBar links={links} />
+            {user ? user.email : "You are currenly logged Out"}
+          </UserContext.Provider>
         </div>
       </MantineProvider>
     </ColorSchemeProvider>
   );
 }
-
-export default App;

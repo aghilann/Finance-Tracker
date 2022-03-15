@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { createStyles, Header, Container, Group, Burger } from "@mantine/core";
 import { useBooleanToggle } from "@mantine/hooks";
 import { ThemeButton } from "./ThemeButton";
+import { Children } from "react";
+import { IsLoggedIn } from "./Auth";
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -93,6 +95,7 @@ export function NavigationBar({ links }: HeaderSimpleProps) {
           className={classes.burger}
           size="sm"
         />
+        <IsLoggedIn></IsLoggedIn>
         <ThemeButton></ThemeButton>
       </Container>
     </Header>
