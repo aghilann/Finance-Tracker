@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import { NavigationBar } from "./NavigationBar/NavigationBar";
 import {
@@ -12,8 +12,25 @@ import { useHotkeys, useLocalStorage } from "@mantine/hooks";
 import { links } from "./Data/NavbarData";
 import { _DEFAULT_THEME } from "./Data/ThemeObject";
 import { supabase } from "./supabaseClient";
+import { isEqual } from "lodash";
+import { LoadExpenses } from "./Expenses/LoadExpenses";
+import { UserContext } from "./UserContext";
 
-export const UserContext = createContext(null);
+export type JSONResponse = { Expenses: ExpenseList };
+
+export interface ExpenseList {
+  Food: expenseItem[];
+  Entertainment: expenseItem[];
+  Miscellaneous: expenseItem[];
+}
+
+type expenseItem = any;
+
+const BaseExpense: ExpenseList = {
+  Food: [],
+  Entertainment: [],
+  Miscellaneous: [],
+};
 
 export function App() {
   const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
@@ -28,20 +45,22 @@ export function App() {
 
   const [user, setUser] = useState(null);
 
-  const [investments, setInvestments] = useState([]);
+  const [userExpenses, setUserExpenses] = useState([BaseExpense]);
 
   useEffect(() => {
-    fetchInvestments();
+    fetchUserFinances();
+    console.log(userExpenses);
   }, []);
 
-  async function fetchInvestments() {
+  async function fetchUserFinances() {
     let { data } = await supabase
       .from("UserFinanceData")
-      .select("*")
-      .eq("UserID", "5052e355-6387-423c-9cc6-d0b337af37aa");
-    setInvestments(data);
-    console.log(data);
+      .select("Expenses")
+      .eq("UserID", `${user.id}`);
+    setUserExpenses(data[0]);
+    console.log(userExpenses[0]);
   }
+  // 5052e355-6387-423c-9cc6-d0b337af37aa
 
   return (
     <ColorSchemeProvider
@@ -50,9 +69,19 @@ export function App() {
     >
       <MantineProvider theme={{ ..._DEFAULT_THEME, colorScheme: colorScheme }}>
         <div className="App">
-          <UserContext.Provider value={{ user, setUser }}>
+          <UserContext.Provider
+            value={{
+              user,
+              setUser,
+              userFinanceData: userExpenses,
+              setUserFinanceData: setUserExpenses,
+            }}
+          >
             <NavigationBar links={links} />
-            {user ? user.email : "You are currenly logged Out"}
+            {user ? user.email : "You are currently logged Out"}
+            {JSON.stringify(userExpenses)}
+            <Button onClick={fetchUserFinances}></Button>
+            <LoadExpenses />
           </UserContext.Provider>
         </div>
       </MantineProvider>

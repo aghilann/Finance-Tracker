@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { supabase } from "../supabaseClient";
 import { Button, Text } from "@mantine/core";
 import { useContext } from "react";
-import { UserContext } from "../App";
+import { UserContext } from "../UserContext";
 
 export function IsLoggedIn() {
   const [session, setSession] = useState(null);
@@ -16,10 +16,6 @@ export function IsLoggedIn() {
   }, []);
 
   // const [user, setUser] = useState(null);
-
-  if (!useContext(UserContext)) {
-    const { user, setUser } = useContext(UserContext);
-  }
   const { user, setUser } = useContext(UserContext);
 
   useEffect(() => {
