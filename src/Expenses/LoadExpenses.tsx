@@ -3,6 +3,7 @@ import { UserContext } from "../UserContext";
 import React from "react";
 import { Container, Text } from "@mantine/core";
 import { useStyles, GetValues, StatsGroupProps } from "./useStyles";
+import "../App.css";
 
 let foodSum: number | unknown;
 let entertainmentSum: number | unknown;

@@ -71,7 +71,7 @@ const useStyles = createStyles((theme) => ({
 export function Hero() {
   const { classes } = useStyles();
   return (
-    <div>
+    <>
       <Container>
         <div className={classes.inner}>
           <div className={classes.content}>
@@ -79,8 +79,8 @@ export function Hero() {
               Where's your <span className={classes.highlight}>money</span>{" "}
               <br /> going?
             </Title>
-            <Text color="dimmed" mt="md">
-              View your personal your investments and current expenses
+            <Text color="" mt="md">
+              View your personal your investments and current expenses!
             </Text>
 
             <List
@@ -94,17 +94,15 @@ export function Hero() {
               }
             >
               <List.Item>
-                <b>TypeScript based</b> – Built to ensure hell in development
-                and no silly bugs in development.
+                <b>TypeScript based</b> – I definitely did'nt use any types...
               </List.Item>
               <List.Item>
                 <b>Free and open source</b> – all packages have MIT license, you
-                can use fork my project and use all of it's dependencies.
+                can use fork my project and use all of it's dependencies
               </List.Item>
               <List.Item>
-                <b>Supabase Backend</b> – Using PostgreSQL under the hood,
-                Supabase allows developers to quickly spin up custom backends
-                with full SQL functionality.
+                <b>Supabase Backend</b> – Simple backend with quick API calls
+                and fast queries with PostgreSQL
               </List.Item>
             </List>
 
@@ -139,6 +137,6 @@ export function Hero() {
           <Image src={image} className={classes.image} />
         </div>
       </Container>
-    </div>
+    </>
   );
 }

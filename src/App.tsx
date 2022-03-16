@@ -84,7 +84,13 @@ export function App() {
             }}
           >
             <NavigationBar links={links} />
-            {!!user || <Hero></Hero>}
+            {!!user || (
+              <div className="diagonal-box animated-background">
+                <div className="content">
+                  <Hero></Hero>
+                </div>
+              </div>
+            )}
             {/* {!!!user || <Button onClick={fetchUserFinances}>Im Button</Button>} */}
             {user == null || (
               <Grid grow>
@@ -94,9 +100,9 @@ export function App() {
                 <Grid.Col span={4}>
                   <LoadExpenses />
                 </Grid.Col>
-                <Grid.Col span={4}>3</Grid.Col>
+                {/* <Grid.Col span={4}>3</Grid.Col>
                 <Grid.Col span={4}>4</Grid.Col>
-                <Grid.Col span={4}>5</Grid.Col>
+                <Grid.Col span={4}>5</Grid.Col> */}
               </Grid>
             )}
           </UserContext.Provider>
