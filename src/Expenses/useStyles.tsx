@@ -67,6 +67,4 @@ export const GetValues = (expenseObject: any) => {
   }
   return res;
 };
-export let foodSum: number | unknown;
-export let entertainmentSum: number | unknown;
-export let miscellaneousSum: number | unknown;
+

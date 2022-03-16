@@ -95,8 +95,8 @@ export function NavigationBar({ links }: HeaderSimpleProps) {
           className={classes.burger}
           size="sm"
         />
-        <IsLoggedIn></IsLoggedIn>
         <ThemeButton></ThemeButton>
+        <IsLoggedIn></IsLoggedIn>
       </Container>
     </Header>
   );

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { UserContext } from "../UserContext";
 import React from "react";
-import { Text } from "@mantine/core";
+import { Container, Text } from "@mantine/core";
 import { useStyles, GetValues, StatsGroupProps } from "./useStyles";
 
 let foodSum: number | unknown;
@@ -71,11 +71,13 @@ export const LoadExpenses = () => {
   const { data } = userData;
 
   const stats = data.map((stat) => (
-    <div key={stat.title} className={classes.stat}>
-      <Text className={classes.count}>{stat.stats}</Text>
-      <Text className={classes.title}>{stat.title}</Text>
-      <Text className={classes.description}>{stat.description}</Text>
-    </div>
+    <Container>
+      <div key={stat.title} className={classes.stat}>
+        <Text className={classes.count}>{stat.stats}</Text>
+        <Text className={classes.title}>{stat.title}</Text>
+        <Text className={classes.description}>{stat.description}</Text>
+      </div>
+    </Container>
   ));
   return <div className={classes.root}>{stats}</div>;
 };
