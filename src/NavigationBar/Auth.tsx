@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { UserContext } from "../UserContext";
 
 export function IsLoggedIn() {
+  const { user, setUser } = useContext(UserContext);
   const [session, setSession] = useState(null);
 
   useEffect(() => {
@@ -13,17 +14,16 @@ export function IsLoggedIn() {
     supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
     });
-  }, []);
+  }, [user]);
 
   // const [user, setUser] = useState(null);
-  const { user, setUser } = useContext(UserContext);
 
   useEffect(() => {
     checkUser();
     window.addEventListener("hashchange", function () {
       checkUser();
     });
-  }, []);
+  }, [user]);
 
   async function checkUser() {
     const user = supabase.auth.user();

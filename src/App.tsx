@@ -44,13 +44,15 @@ export function App() {
   useHotkeys([["mod+J", () => toggleColorScheme()]]);
 
   const [user, setUser] = useState(null);
-
   const [userExpenses, setUserExpenses] = useState([BaseExpense]);
 
   useEffect(() => {
-    fetchUserFinances();
-    console.log(userExpenses);
-  }, []);
+    if (!!user) {
+      fetchUserFinances();
+      console.log(userExpenses);
+      console.log("Hello");
+    }
+  }, [user]);
 
   async function fetchUserFinances() {
     let { data } = await supabase
@@ -58,9 +60,7 @@ export function App() {
       .select("Expenses")
       .eq("UserID", `${user.id}`);
     setUserExpenses(data[0]);
-    console.log(userExpenses[0]);
   }
-  // 5052e355-6387-423c-9cc6-d0b337af37aa
 
   return (
     <ColorSchemeProvider
@@ -73,14 +73,13 @@ export function App() {
             value={{
               user,
               setUser,
-              userFinanceData: userExpenses,
-              setUserFinanceData: setUserExpenses,
+              userExpenses,
+              setUserExpenses,
             }}
           >
             <NavigationBar links={links} />
-            {user ? user.email : "You are currently logged Out"}
-            {JSON.stringify(userExpenses)}
-            <Button onClick={fetchUserFinances}></Button>
+            {!!user ? user.email : "You are currently logged Out"}
+            {!!!user || <Button onClick={fetchUserFinances}>Im Button</Button>}
             <LoadExpenses />
           </UserContext.Provider>
         </div>
