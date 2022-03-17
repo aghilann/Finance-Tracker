@@ -12,6 +12,7 @@ import {
 } from "@mantine/core";
 import { Check } from "tabler-icons-react";
 import image from "./image.svg";
+import "../App.css";
 
 const useStyles = createStyles((theme) => ({
   inner: {

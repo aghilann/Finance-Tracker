@@ -14,9 +14,10 @@ import { links } from "./Data/NavbarData";
 import { _DEFAULT_THEME } from "./Data/ThemeObject";
 import { supabase } from "./supabaseClient";
 import { isEqual } from "lodash";
-import { LoadExpenses } from "./Expenses/LoadExpenses";
 import { UserContext } from "./UserContext";
 import { Hero } from "./HeroSection/Hero";
+import { AddExpense } from "./Expenses/InputExpense/AddExpense";
+import { LoadExpenses } from "./Expenses/LoadExpenseValue/LoadExpenses";
 
 export type JSONResponse = { Expenses: ExpenseList };
 
@@ -26,7 +27,7 @@ export interface ExpenseList {
   Miscellaneous: expenseItem[];
 }
 
-type expenseItem = any;
+type expenseItem = undefined | { string: number };
 
 const BaseExpense: ExpenseList = {
   Food: [],
@@ -34,7 +35,7 @@ const BaseExpense: ExpenseList = {
   Miscellaneous: [],
 };
 
-export function App() {
+export const App: React.FC = () => {
   const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
     key: "mantine-color-scheme",
     defaultValue: "light",
@@ -93,21 +94,20 @@ export function App() {
             )}
             {/* {!!!user || <Button onClick={fetchUserFinances}>Im Button</Button>} */}
             {user == null || (
-              <Grid grow>
-                <Grid.Col span={4}>
-                  <LoadExpenses />
-                </Grid.Col>
-                <Grid.Col span={4}>
-                  <LoadExpenses />
-                </Grid.Col>
-                {/* <Grid.Col span={4}>3</Grid.Col>
-                <Grid.Col span={4}>4</Grid.Col>
-                <Grid.Col span={4}>5</Grid.Col> */}
-              </Grid>
+              <>
+                <Grid grow>
+                  <Grid.Col span={4}>
+                    <LoadExpenses />
+                  </Grid.Col>
+                  <Grid.Col span={4}>
+                    <AddExpense />
+                  </Grid.Col>
+                </Grid>
+              </>
             )}
           </UserContext.Provider>
         </div>
       </MantineProvider>
     </ColorSchemeProvider>
   );
-}
+};
