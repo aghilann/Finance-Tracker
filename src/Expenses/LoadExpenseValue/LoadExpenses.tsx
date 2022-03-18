@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { UserContext } from "../../UserContext";
 import React from "react";
 import { Container, Text } from "@mantine/core";
@@ -43,7 +43,7 @@ export const LoadExpenses = () => {
         GetValues(userExpenses.Expenses.Miscellaneous)
       ).reduce((a: any, b: any) => a + b);
     } else {
-      console.log("The misc is undefined");
+      console.log("The m is undefined");
       miscellaneousSum = -1;
     }
   } else {

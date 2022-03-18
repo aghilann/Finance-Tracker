@@ -45,6 +45,7 @@ async function updateUserFinances(
   currentUserID: string,
   updatedExpenses: Object
 ) {
+  console.log(`So at least this is here ${JSON.stringify(updatedExpenses)}`);
   const { data, error } = await supabase
     .from("UserFinanceData")
     .update({ Expenses: updatedExpenses })
@@ -77,7 +78,7 @@ export const AddExpense: React.FC = () => {
     UserInputObject[name] = price;
     console.log("Check below");
     if (userExpenses !== undefined && userExpenses.Expenses !== undefined) {
-      setUserExpenses(userExpenses.Expenses);
+      setUserExpenses(userExpenses.Expenses[expenseType].push(UserInputObject));
       form.setFieldValue("expenseName", "");
       form.setFieldValue("expenseType", null);
       form.setFieldValue("price", 0);
