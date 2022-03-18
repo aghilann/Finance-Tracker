@@ -1,4 +1,4 @@
-import React, { BaseSyntheticEvent, useContext } from "react";
+import React, { BaseSyntheticEvent, useContext, useEffect } from "react";
 import { UserContext } from "../../UserContext";
 import {
   createStyles,
@@ -56,6 +56,7 @@ export const AddExpense: React.FC = () => {
   const { classes } = useStyles();
   const { userExpenses, setUserExpenses, user, setUser } =
     useContext(UserContext);
+
   const form: any = useForm({
     initialValues: {
       expenseName: "",
@@ -85,6 +86,7 @@ export const AddExpense: React.FC = () => {
       updateUserFinances(user.id, userExpenses.Expenses);
     }
   };
+  useEffect(() => console.log("State change"), [userExpenses]);
   return (
     <Container>
       <form onSubmit={form.onSubmit((values: any) => handleForm(values))}>
