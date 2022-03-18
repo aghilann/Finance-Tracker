@@ -27,9 +27,9 @@ export interface ExpenseList {
   Miscellaneous: expenseItem[];
 }
 
-type expenseItem = undefined | { string: number };
+export type expenseItem = undefined | { string: number };
 
-const BaseExpense: ExpenseList = {
+export const BaseExpense: ExpenseList = {
   Food: [],
   Entertainment: [],
   Miscellaneous: [],
@@ -85,15 +85,15 @@ export const App: React.FC = () => {
             }}
           >
             <NavigationBar links={links} />
-            {!!user || (
+            {!!user || ( // Change true to user after GitHub update
               <div className="diagonal-box animated-background">
                 <div className="content">
                   <Hero></Hero>
                 </div>
               </div>
             )}
-            {/* {!!!user || <Button onClick={fetchUserFinances}>Im Button</Button>} */}
-            {user == null || (
+            {!!!user || <Button onClick={fetchUserFinances}>Im Button</Button>}
+            {user == null || ( // !!! Change false to User after GitHub is online
               <>
                 <Grid grow>
                   <Grid.Col span={4}>

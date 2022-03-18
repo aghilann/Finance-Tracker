@@ -11,12 +11,14 @@ let miscellaneousSum: number | unknown;
 
 export const LoadExpenses = () => {
   const { userExpenses, setUserExpenses } = useContext(UserContext);
+  console.log(typeof userExpenses);
+  console.log("Hello above");
 
   const { classes } = useStyles();
   if (
-    userExpenses !== undefined &&
-    userExpenses.Expenses !== undefined &&
-    userExpenses.Expenses.Food !== undefined
+    userExpenses != undefined &&
+    userExpenses.Expenses != undefined &&
+    userExpenses.Expenses.Food != undefined
   ) {
     console.log("The properties are defined. Stuff works");
     if (userExpenses.Expenses.Food.length != 0) {
@@ -24,6 +26,7 @@ export const LoadExpenses = () => {
         (a: any, b: any) => a + b
       );
     } else {
+      console.log("Food is undefined");
       foodSum = 0;
     }
     if (userExpenses.Expenses.Entertainment.length != 0) {
@@ -31,7 +34,8 @@ export const LoadExpenses = () => {
         GetValues(userExpenses.Expenses.Entertainment)
       ).reduce((a: any, b: any) => a + b);
     } else {
-      entertainmentSum = 0;
+      console.log("Entertainment sum is undefined");
+      entertainmentSum = -1;
     }
 
     if (userExpenses.Expenses.Miscellaneous.length != 0) {
@@ -39,12 +43,15 @@ export const LoadExpenses = () => {
         GetValues(userExpenses.Expenses.Miscellaneous)
       ).reduce((a: any, b: any) => a + b);
     } else {
-      miscellaneousSum = 0;
+      console.log("The misc is undefined");
+      miscellaneousSum = -1;
     }
   } else {
-    console.log("The properties are undefined");
+    console.log("The properties is undefined");
     console.log(userExpenses);
     foodSum = -1;
+    entertainmentSum = -1;
+    miscellaneousSum = -1;
   }
   let userData: StatsGroupProps = {
     data: [

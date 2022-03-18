@@ -1,4 +1,5 @@
-import React, { BaseSyntheticEvent } from "react";
+import React, { BaseSyntheticEvent, useContext } from "react";
+import { UserContext } from "../../UserContext";
 import {
   createStyles,
   Select,
@@ -9,6 +10,13 @@ import {
 } from "@mantine/core";
 import { DatePicker } from "@mantine/dates";
 import { useForm } from "@mantine/form";
+import { expenseItem } from "../../App";
+
+interface expenseObject {
+  expenseName: string;
+  expenseType: string;
+  price: number;
+}
 
 const useStyles = createStyles((theme) => ({
   root: {
@@ -30,17 +38,12 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-const handleForm = (event: BaseSyntheticEvent) => {
-  event.preventDefault();
-  console.log();
-};
-
 type expenseTypeDef = "Food" | "Entertainment" | "Miscellaneous";
 
 export const AddExpense: React.FC = () => {
   const { classes } = useStyles();
-
-  const form = useForm({
+  const { userExpenses, setUserExpenses } = useContext(UserContext);
+  const form: any = useForm({
     initialValues: {
       expenseName: "",
       expenseType: "",
@@ -53,9 +56,32 @@ export const AddExpense: React.FC = () => {
     },
   });
 
+  const handleForm = (expenseObject: expenseObject) => {
+    event.preventDefault();
+    console.log("HandleForm is below");
+    const price: number = expenseObject.price;
+    const name: string = expenseObject.expenseName;
+    const expenseType = expenseObject.expenseType;
+    var UserInputObject = {};
+    UserInputObject[name] = price;
+    // if (UserInputObject != undefined) {
+    console.log(UserInputObject);
+    // UserInputObject[name] = price;
+    console.log(userExpenses);
+    console.log("Check below");
+    const temp = userExpenses.Expenses[expenseType].push(UserInputObject);
+    console.log(userExpenses);
+    console.log(`User Expenses is of type ${typeof userExpenses}`);
+    form.setFieldValue("expenseName", "");
+    form.setFieldValue("expenseType", null);
+    form.setFieldValue("price", 0);
+    console.log(userExpenses);
+    // }
+  };
   return (
     <Container>
-      <form onSubmit={form.onSubmit((values) => console.log(values))}>
+      <form onSubmit={form.onSubmit((values: any) => handleForm(values))}>
+        {/* form.onSubmit((values) => console.log(values)) */}
         <TextInput
           required
           label="Expense Name"
@@ -63,7 +89,6 @@ export const AddExpense: React.FC = () => {
           classNames={classes}
           onChange={(event) => {
             form.setFieldValue("expenseName", event.target.value);
-            console.log(form.values.expenseName);
           }}
           value={form.values.expenseName}
         />
@@ -77,7 +102,6 @@ export const AddExpense: React.FC = () => {
           classNames={classes}
           onChange={(event) => {
             form.setFieldValue("expenseType", event);
-            console.log(event);
           }}
           value={form.values.expenseType}
         />
@@ -85,7 +109,7 @@ export const AddExpense: React.FC = () => {
         <NumberInput
           required
           label="Price"
-          defaultValue={5}
+          defaultValue={0}
           parser={(value) => value.replace(/\$\s?|(,*)/g, "")}
           formatter={(value) =>
             !Number.isNaN(parseFloat(value))
@@ -96,10 +120,9 @@ export const AddExpense: React.FC = () => {
           {...form.getInputProps("price")}
           onChange={(event) => {
             form.setFieldValue("price", event);
-            console.log(event);
           }}
         />
-        <Button></Button>
+        <Button type="submit"></Button>
       </form>
     </Container>
   );
