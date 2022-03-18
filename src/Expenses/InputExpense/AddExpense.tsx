@@ -11,6 +11,7 @@ import {
 import { DatePicker } from "@mantine/dates";
 import { useForm } from "@mantine/form";
 import { expenseItem } from "../../App";
+import { supabase } from "../../supabaseClient";
 
 interface expenseObject {
   expenseName: string;
@@ -40,9 +41,20 @@ const useStyles = createStyles((theme) => ({
 
 type expenseTypeDef = "Food" | "Entertainment" | "Miscellaneous";
 
+async function updateUserFinances(
+  currentUserID: string,
+  updatedExpenses: Object
+) {
+  const { data, error } = await supabase
+    .from("UserFinanceData")
+    .update({ Expenses: updatedExpenses })
+    .eq("UserID", currentUserID);
+}
+
 export const AddExpense: React.FC = () => {
   const { classes } = useStyles();
-  const { userExpenses, setUserExpenses } = useContext(UserContext);
+  const { userExpenses, setUserExpenses, user, setUser } =
+    useContext(UserContext);
   const form: any = useForm({
     initialValues: {
       expenseName: "",
@@ -57,31 +69,24 @@ export const AddExpense: React.FC = () => {
   });
 
   const handleForm = (expenseObject: expenseObject) => {
-    event.preventDefault();
     console.log("HandleForm is below");
     const price: number = expenseObject.price;
     const name: string = expenseObject.expenseName;
     const expenseType = expenseObject.expenseType;
-    var UserInputObject = {};
+    const UserInputObject = {};
     UserInputObject[name] = price;
-    // if (UserInputObject != undefined) {
-    console.log(UserInputObject);
-    // UserInputObject[name] = price;
-    console.log(userExpenses);
     console.log("Check below");
-    const temp = userExpenses.Expenses[expenseType].push(UserInputObject);
-    console.log(userExpenses);
-    console.log(`User Expenses is of type ${typeof userExpenses}`);
-    form.setFieldValue("expenseName", "");
-    form.setFieldValue("expenseType", null);
-    form.setFieldValue("price", 0);
-    console.log(userExpenses);
-    // }
+    if (userExpenses !== undefined && userExpenses.Expenses !== undefined) {
+      setUserExpenses(userExpenses.Expenses);
+      form.setFieldValue("expenseName", "");
+      form.setFieldValue("expenseType", null);
+      form.setFieldValue("price", 0);
+      updateUserFinances(user.id, userExpenses.Expenses);
+    }
   };
   return (
     <Container>
       <form onSubmit={form.onSubmit((values: any) => handleForm(values))}>
-        {/* form.onSubmit((values) => console.log(values)) */}
         <TextInput
           required
           label="Expense Name"
@@ -127,3 +132,6 @@ export const AddExpense: React.FC = () => {
     </Container>
   );
 };
+function eq(arg0: string, currentUserID: string) {
+  throw new Error("Function not implemented.");
+}
