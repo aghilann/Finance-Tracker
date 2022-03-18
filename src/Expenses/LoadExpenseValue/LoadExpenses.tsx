@@ -15,6 +15,9 @@ export const LoadExpenses = () => {
   console.log("Hello above");
 
   const { classes } = useStyles();
+  useEffect(() => {
+    () => {};
+  });
   if (
     userExpenses != undefined &&
     userExpenses.Expenses != undefined &&
@@ -49,9 +52,9 @@ export const LoadExpenses = () => {
   } else {
     console.log("The properties is undefined");
     console.log(userExpenses);
-    foodSum = -1;
-    entertainmentSum = -1;
-    miscellaneousSum = -1;
+    foodSum = "Loading";
+    entertainmentSum = "Loading";
+    miscellaneousSum = "Loading";
   }
   let userData: StatsGroupProps = {
     data: [

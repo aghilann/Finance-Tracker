@@ -52,10 +52,8 @@ export const App: React.FC = () => {
   useEffect(() => {
     if (!!user) {
       fetchUserFinances();
-      console.log(userExpenses);
-      console.log("Hello");
     }
-  }, [user]);
+  }, [user, setUserExpenses]);
 
   async function fetchUserFinances() {
     let { data } = await supabase
@@ -66,6 +64,8 @@ export const App: React.FC = () => {
   }
   // let blackColor = _DEFAULT_THEME.colors.dark[7];
   // let lightColor = _DEFAULT_THEME.colors.gray[1];
+
+  // useEffect(() => fetchUserFinances(), [userExpenses]); // Infinite Loop !!!
   return (
     <ColorSchemeProvider
       colorScheme={colorScheme}
@@ -82,6 +82,7 @@ export const App: React.FC = () => {
               setUser,
               userExpenses,
               setUserExpenses,
+              fetchUserFinances,
             }}
           >
             <NavigationBar links={links} />

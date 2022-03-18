@@ -12,6 +12,7 @@ import { DatePicker } from "@mantine/dates";
 import { useForm } from "@mantine/form";
 import { expenseItem } from "../../App";
 import { supabase } from "../../supabaseClient";
+import { count } from "console";
 
 interface expenseObject {
   expenseName: string;
@@ -41,21 +42,23 @@ const useStyles = createStyles((theme) => ({
 
 type expenseTypeDef = "Food" | "Entertainment" | "Miscellaneous";
 
-async function updateUserFinances(
-  currentUserID: string,
-  updatedExpenses: Object
-) {
-  console.log(`So at least this is here ${JSON.stringify(updatedExpenses)}`);
-  const { data, error } = await supabase
-    .from("UserFinanceData")
-    .update({ Expenses: updatedExpenses })
-    .eq("UserID", currentUserID);
-}
-
 export const AddExpense: React.FC = () => {
   const { classes } = useStyles();
-  const { userExpenses, setUserExpenses, user, setUser } =
+  const { userExpenses, setUserExpenses, user, setUser, fetchUserFinances } =
     useContext(UserContext);
+
+  async function updateUserFinances(
+    currentUserID: string,
+    updatedExpenses: Object
+  ) {
+    console.log(`So at least this is here ${JSON.stringify(updatedExpenses)}`);
+    const { data, error } = await supabase
+      .from("UserFinanceData")
+      .update({ Expenses: updatedExpenses })
+      .eq("UserID", currentUserID);
+
+    fetchUserFinances();
+  }
 
   const form: any = useForm({
     initialValues: {
@@ -75,9 +78,8 @@ export const AddExpense: React.FC = () => {
     const price: number = expenseObject.price;
     const name: string = expenseObject.expenseName;
     const expenseType = expenseObject.expenseType;
-    const UserInputObject = {};
+    const UserInputObject: Record<string, unknown> = {};
     UserInputObject[name] = price;
-    console.log("Check below");
     if (userExpenses !== undefined && userExpenses.Expenses !== undefined) {
       setUserExpenses(userExpenses.Expenses[expenseType].push(UserInputObject));
       form.setFieldValue("expenseName", "");
@@ -86,7 +88,6 @@ export const AddExpense: React.FC = () => {
       updateUserFinances(user.id, userExpenses.Expenses);
     }
   };
-  useEffect(() => console.log("State change"), [userExpenses]);
   return (
     <Container>
       <form onSubmit={form.onSubmit((values: any) => handleForm(values))}>
@@ -136,5 +137,8 @@ export const AddExpense: React.FC = () => {
   );
 };
 function eq(arg0: string, currentUserID: string) {
+  throw new Error("Function not implemented.");
+}
+function setCount(arg0: any) {
   throw new Error("Function not implemented.");
 }
