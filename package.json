@@ -12,6 +12,7 @@
     "@mantine/dates": "^4.0.4",
     "@mantine/form": "^4.0.5",
     "@mantine/hooks": "^4.0.4",
+    "@primer/octicons-react": "^17.0.0",
     "@supabase/supabase-js": "^1.31.1",
     "@types/lodash": "^4.14.180",
     "dayjs": "^1.10.8",

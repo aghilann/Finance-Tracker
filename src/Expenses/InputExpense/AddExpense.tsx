@@ -13,6 +13,7 @@ import { useForm } from "@mantine/form";
 import { expenseItem } from "../../App";
 import { supabase } from "../../supabaseClient";
 import { count } from "console";
+import "./AddExpense.css";
 
 interface expenseObject {
   expenseName: string;
@@ -131,7 +132,15 @@ export const AddExpense: React.FC = () => {
             form.setFieldValue("price", event);
           }}
         />
-        <Button type="submit"></Button>
+        <Container style={{ marginTop: 15, marginLeft: -15 }}>
+          <Button
+            type="submit"
+            variant="gradient"
+            gradient={{ from: "indigo", to: "cyan" }}
+          >
+            Submit Expense
+          </Button>
+        </Container>
       </form>
     </Container>
   );

@@ -1,10 +1,32 @@
 import { useState, useEffect } from "react";
 import { supabase } from "../supabaseClient";
-import { Button, Text } from "@mantine/core";
 import { useContext } from "react";
 import { UserContext } from "../UserContext";
+import { Button, ButtonProps, Group, Text } from "@mantine/core";
+import { MarkGithubIcon } from "@primer/octicons-react";
 
-export function IsLoggedIn() {
+export const GithubButton: React.FC = (props: ButtonProps<"button">) => {
+  const { user } = useContext(UserContext);
+  return (
+    <Button
+      {...props}
+      leftIcon={<MarkGithubIcon />}
+      sx={(theme) => ({
+        backgroundColor:
+          theme.colors.dark[theme.colorScheme === "dark" ? 7 : 6],
+        color: "#fff",
+        "&:hover": {
+          backgroundColor:
+            theme.colors.dark[theme.colorScheme === "dark" ? 5 : 6],
+        },
+      })}
+    >
+      {user.email}
+    </Button>
+  );
+};
+
+export const IsLoggedIn = () => {
   const { user, setUser } = useContext(UserContext);
   const [session, setSession] = useState(null);
 
@@ -52,6 +74,7 @@ export function IsLoggedIn() {
           style={{ fontFamily: "Greycliff CF, sans-serif" }}
         ></Text>
         <Button onClick={signOut}>Sign out {user.email}</Button>
+        <GithubButton></GithubButton>
       </>
     );
   }
@@ -60,4 +83,4 @@ export function IsLoggedIn() {
       <Button onClick={signInWithGithub}>Sign In</Button>
     </>
   );
-}
+};

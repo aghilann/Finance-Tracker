@@ -61,20 +61,17 @@ export const LoadExpenses = () => {
       {
         title: "Food Expenses",
         stats: `$${foodSum}`, // !!!
-        description:
-          "24% more than in the same month last year, 33% more that two years ago",
+        description: "It appears somebody has been hungry.",
       },
       {
         title: "Entertainment Expenses",
         stats: `$${entertainmentSum}`,
-        description:
-          "13% less compared to last month, new user engagement up by 6%",
+        description: "You know all you really need is some Netflix right?",
       },
       {
         title: "Miscellaneous",
         stats: `$${miscellaneousSum}`,
-        description:
-          "1994 orders were completed this month, 97% satisfaction rate",
+        description: "Inflation, am I right?",
       },
     ],
   };

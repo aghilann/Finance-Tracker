@@ -93,7 +93,6 @@ export const App: React.FC = () => {
                 </div>
               </div>
             )}
-            {!!!user || <Button onClick={fetchUserFinances}>Im Button</Button>}
             {user == null || ( // !!! Change false to User after GitHub is online
               <>
                 <Grid grow>
