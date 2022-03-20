@@ -84,7 +84,7 @@ export function NavigationBar({ links }: HeaderSimpleProps) {
   ));
 
   return (
-    <Header height={60} mb={70}>
+    <Header height={60} mb={112}>
       <Container className={classes.header}>
         <Group spacing={5} className={classes.links}>
           {items}

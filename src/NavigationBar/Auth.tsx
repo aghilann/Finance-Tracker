@@ -5,23 +5,29 @@ import { UserContext } from "../UserContext";
 import { Button, ButtonProps, Group, Text } from "@mantine/core";
 import { MarkGithubIcon } from "@primer/octicons-react";
 
-export const GithubButton: React.FC = (props: ButtonProps<"button">) => {
+export const GithubButton: React.FC<any> = ({ method, message }) => {
+  // !!! Change from any type
   const { user } = useContext(UserContext);
   return (
     <Button
-      {...props}
       leftIcon={<MarkGithubIcon />}
       sx={(theme) => ({
         backgroundColor:
-          theme.colors.dark[theme.colorScheme === "dark" ? 7 : 6],
+          theme.colorScheme === "dark"
+            ? theme.colors.dark[7]
+            : theme.colors.gray[8],
+        // theme.colors.dark[theme.colorScheme === "dark" ? 7 : 5],
         color: "#fff",
         "&:hover": {
           backgroundColor:
-            theme.colors.dark[theme.colorScheme === "dark" ? 5 : 6],
+            theme.colorScheme === "dark"
+              ? theme.colors.dark[9]
+              : theme.colors.gray[6],
         },
       })}
+      onClick={method}
     >
-      {user.email}
+      {message}
     </Button>
   );
 };
@@ -60,7 +66,7 @@ export const IsLoggedIn = () => {
     await supabase.auth.signOut();
     setUser(null);
   }
-
+  console.log(user);
   if (user) {
     return (
       <>
@@ -73,14 +79,21 @@ export const IsLoggedIn = () => {
           weight={700}
           style={{ fontFamily: "Greycliff CF, sans-serif" }}
         ></Text>
-        <Button onClick={signOut}>Sign out {user.email}</Button>
-        <GithubButton></GithubButton>
+        <GithubButton
+          method={signOut}
+          message={`Sign Out ${user.user_metadata.preferred_username}`}
+        >
+          Sign Out {user.email}
+        </GithubButton>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <GithubButton method={signInWithGithub} message={"Sign In"}>
+          Sign In
+        </GithubButton>
       </>
     );
   }
-  return (
-    <>
-      <Button onClick={signInWithGithub}>Sign In</Button>
-    </>
-  );
 };
