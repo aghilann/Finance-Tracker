@@ -18,6 +18,7 @@ import { UserContext } from "./UserContext";
 import { Hero } from "./HeroSection/Hero";
 import { AddExpense } from "./Expenses/InputExpense/AddExpense";
 import { LoadExpenses } from "./Expenses/LoadExpenseValue/LoadExpenses";
+import { ExpenseTable } from "./Expenses/ViewExpenses/ExpenseList";
 
 export type JSONResponse = { Expenses: ExpenseList };
 
@@ -96,11 +97,14 @@ export const App: React.FC = () => {
             {user == null || ( // !!! Change false to User after GitHub is online
               <>
                 <Grid grow>
-                  <Grid.Col span={4}>
+                  <Grid.Col span={8}>
                     <LoadExpenses />
                   </Grid.Col>
                   <Grid.Col span={4}>
                     <AddExpense />
+                  </Grid.Col>
+                  <Grid.Col span={4}>
+                    <ExpenseTable></ExpenseTable>
                   </Grid.Col>
                 </Grid>
               </>
