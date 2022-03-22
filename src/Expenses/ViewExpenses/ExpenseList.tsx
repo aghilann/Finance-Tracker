@@ -11,6 +11,7 @@ import { useStyles, data } from "./data";
 import { _DEFAULT_THEME as theme } from "../../Data/ThemeObject";
 import { isArray } from "util";
 import { useEffect } from "react";
+import { forEach } from "lodash";
 
 interface UserExpenses {
   Expenses: {
@@ -26,6 +27,7 @@ export const ExpenseTable: React.FC = () => {
   const { user, setUser, userExpenses, setUserExpenses, fetchUserFinances } =
     useContext(UserContext);
   useEffect(() => null, []);
+
   interface UserExpenses {
     Expenses: {
       [category: string]: { [name: string]: number }[];
@@ -34,14 +36,32 @@ export const ExpenseTable: React.FC = () => {
 
   const dummy: UserExpenses = {
     Expenses: {
-      Food: [{ Netflix: 100 }],
+      Food: [{ Net: 100 }],
       Entertainment: [],
       Miscellaneous: [],
     },
   };
 
+  const updateExpenseArray = () => {
+    if (typeof userExpenses.Expenses !== "undefined") {
+      for (const e of userExpenses.Expenses.Food) {
+        dummy.Expenses.Food.push(e);
+      }
+
+      for (const e of userExpenses.Expenses.Entertainment) {
+        dummy.Expenses.Entertainment.push(e);
+      }
+
+      for (const e of userExpenses.Expenses.Miscellaneous) {
+        dummy.Expenses.Miscellaneous.push(e);
+      }
+    }
+  };
+
+  updateExpenseArray();
+
   if (userExpenses.Expenses) {
-    const arrExpenses = Object.entries(userExpenses.Expenses)
+    const arrExpenses = Object.entries(dummy.Expenses)
       .map(
         (
           [category, expenses] // Map each category to [{ name, cost, category }]
@@ -55,8 +75,7 @@ export const ExpenseTable: React.FC = () => {
       )
       .flat(); // Flatten category arrays into 1 expense array
 
-    console.log(arrExpenses);
-
+    // console.log(arrExpenses);
     const rows = arrExpenses.map((row) => (
       <tr key={row.name}>
         <td>{row.name}</td>

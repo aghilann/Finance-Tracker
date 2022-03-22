@@ -52,7 +52,7 @@ export const AddExpense: React.FC = () => {
     currentUserID: string,
     updatedExpenses: Object
   ) {
-    console.log(`So at least this is here ${JSON.stringify(updatedExpenses)}`);
+    // console.log(`So at least this is here ${JSON.stringify(updatedExpenses)}`);
     const { data, error } = await supabase
       .from("UserFinanceData")
       .update({ Expenses: updatedExpenses })
@@ -75,7 +75,7 @@ export const AddExpense: React.FC = () => {
   });
 
   const handleForm = (expenseObject: expenseObject) => {
-    console.log("HandleForm is below");
+    // console.log("HandleForm is below");
     const price: number = expenseObject.price;
     const name: string = expenseObject.expenseName;
     const expenseType = expenseObject.expenseType;

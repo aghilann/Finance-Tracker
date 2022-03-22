@@ -66,7 +66,7 @@ export const IsLoggedIn = () => {
     await supabase.auth.signOut();
     setUser(null);
   }
-  console.log(user);
+  // console.log(user)
   if (user) {
     return (
       <>

@@ -11,8 +11,8 @@ let miscellaneousSum: number | unknown;
 
 export const LoadExpenses = () => {
   const { userExpenses, setUserExpenses } = useContext(UserContext);
-  console.log(typeof userExpenses);
-  console.log("Hello above");
+  // console.log(typeof userExpenses);
+  // console.log("Hello above");
 
   const { classes } = useStyles();
   useEffect(() => {
@@ -23,13 +23,13 @@ export const LoadExpenses = () => {
     userExpenses.Expenses != undefined &&
     userExpenses.Expenses.Food != undefined
   ) {
-    console.log("The properties are defined. Stuff works");
+    // // console.log("The properties are defined. Stuff works");
     if (userExpenses.Expenses.Food.length != 0) {
       foodSum = Object.values(GetValues(userExpenses.Expenses.Food)).reduce(
         (a: any, b: any) => a + b
       );
     } else {
-      console.log("Food is undefined");
+      // console.log("Food is undefined");
       foodSum = 0;
     }
     if (userExpenses.Expenses.Entertainment.length != 0) {
@@ -37,7 +37,7 @@ export const LoadExpenses = () => {
         GetValues(userExpenses.Expenses.Entertainment)
       ).reduce((a: any, b: any) => a + b);
     } else {
-      console.log("Entertainment sum is undefined");
+      // console.log("Entertainment sum is undefined");
       entertainmentSum = -1;
     }
 
@@ -46,12 +46,12 @@ export const LoadExpenses = () => {
         GetValues(userExpenses.Expenses.Miscellaneous)
       ).reduce((a: any, b: any) => a + b);
     } else {
-      console.log("The m is undefined");
+      // console.log("The m is undefined");
       miscellaneousSum = -1;
     }
   } else {
-    console.log("The properties is undefined");
-    console.log(userExpenses);
+    // console.log("The properties is undefined");
+    // console.log(userExpenses);
     foodSum = "Loading";
     entertainmentSum = "Loading";
     miscellaneousSum = "Loading";
