@@ -8,6 +8,8 @@ import {
   MantineTheme,
   Button,
   Grid,
+  Group,
+  Modal,
 } from "@mantine/core";
 import { useHotkeys, useLocalStorage } from "@mantine/hooks";
 import { links } from "./Data/NavbarData";
@@ -100,11 +102,11 @@ export const App: React.FC = () => {
                   <Grid.Col span={8}>
                     <LoadExpenses />
                   </Grid.Col>
-                  <Grid.Col span={4}>
-                    <AddExpense />
+                  <Grid.Col span={8}>
+                    <ExpenseTable />
                   </Grid.Col>
-                  <Grid.Col span={4}>
-                    <ExpenseTable></ExpenseTable>
+                  <Grid.Col span={2}>
+                    <AddExpense />
                   </Grid.Col>
                 </Grid>
               </>
