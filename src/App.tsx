@@ -60,6 +60,12 @@ export const App: React.FC = () => {
     }
   }, [user, setUserExpenses]);
 
+  useEffect(() => {
+    if (!!user) {
+      fetchUserStocks();
+    }
+  }, [user]);
+
   async function fetchUserFinances() {
     let { data } = await supabase
       .from("UserFinanceData")
@@ -70,12 +76,13 @@ export const App: React.FC = () => {
   }
 
   async function fetchUserStocks() {
-    let { data } = await supabase
+    let { data, error } = await supabase
       .from("UserFinanceData")
       .select("Investments")
       .eq("UserID", `${user.id}`);
-    setUserStocks(data[0]);
-    console.log(data);
+    setUserStocks(data[0].Investments);
+    console.log(data[0].Investments);
+    console.log("I am run");
   }
   return (
     <ColorSchemeProvider
