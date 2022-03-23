@@ -1,5 +1,6 @@
+import { AnyNsRecord } from "dns";
 import { createContext } from "react";
-import { JSONResponse } from "./App";
+import { JSONResponse, ExpenseList } from "./App";
 
 const userFinanceData: JSONResponse = {
   Expenses: {
@@ -9,4 +10,4 @@ const userFinanceData: JSONResponse = {
   },
 };
 
-export const UserContext: React.Context<any> = createContext(userFinanceData);
+export const UserContext = createContext(userFinanceData);

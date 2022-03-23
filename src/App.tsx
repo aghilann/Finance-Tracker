@@ -21,6 +21,7 @@ import { Hero } from "./HeroSection/Hero";
 import { AddExpense } from "./Expenses/InputExpense/AddExpense";
 import { LoadExpenses } from "./Expenses/LoadExpenseValue/LoadExpenses";
 import { ExpenseTable } from "./Expenses/ViewExpenses/ExpenseList";
+import { RenderInvestments } from "./Stocks/RenderInvestments";
 
 export type JSONResponse = { Expenses: ExpenseList };
 
@@ -51,6 +52,7 @@ export const App: React.FC = () => {
 
   const [user, setUser] = useState(null);
   const [userExpenses, setUserExpenses] = useState([BaseExpense]);
+  const [stocks, setUserStocks] = useState<string[]>([]);
 
   useEffect(() => {
     if (!!user) {
@@ -65,10 +67,15 @@ export const App: React.FC = () => {
       .eq("UserID", `${user.id}`);
     setUserExpenses(data[0]);
   }
-  // let blackColor = _DEFAULT_THEME.colors.dark[7];
-  // let lightColor = _DEFAULT_THEME.colors.gray[1];
 
-  // useEffect(() => fetchUserFinances(), [userExpenses]); // Infinite Loop !!!
+  async function fetchUserStocks() {
+    let { data } = await supabase
+      .from("UserFinanceData")
+      .select("Investments")
+      .eq("UserID", `${user.id}`);
+    setUserStocks(data[0]);
+    console.log(data);
+  }
   return (
     <ColorSchemeProvider
       colorScheme={colorScheme}
@@ -107,6 +114,9 @@ export const App: React.FC = () => {
                   </Grid.Col>
                   <Grid.Col span={2}>
                     <AddExpense />
+                  </Grid.Col>
+                  <Grid.Col span={2}>
+                    <RenderInvestments stocks={stocks} />
                   </Grid.Col>
                 </Grid>
               </>
