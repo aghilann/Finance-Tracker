@@ -10,4 +10,4 @@ const userFinanceData: JSONResponse = {
   },
 };
 
-export const UserContext = createContext(userFinanceData);
+export const UserContext: React.Context<any> = createContext(userFinanceData);
