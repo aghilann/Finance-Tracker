@@ -27,6 +27,7 @@ export const RenderInvestments: React.FC<{ stocks: string[] }> = ({
   const stats = stocks.map((stock) => {
     // const DiffIcon = stock.diff > 0 ? ArrowUpRight : ArrowDownRight;
 
+<<<<<<< Updated upstream
     return (
       <Paper withBorder p="md" radius="md" key={stock}>
         <Group position="apart">
@@ -78,4 +79,10 @@ export const RenderInvestments: React.FC<{ stocks: string[] }> = ({
       </SimpleGrid>
     </div>
   );
+=======
+    return <p>Hello</p>;
+  });
+
+  return <p>Hello</p>;
+>>>>>>> Stashed changes
 };

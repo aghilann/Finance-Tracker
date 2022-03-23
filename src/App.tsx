@@ -66,6 +66,7 @@ export const App: React.FC = () => {
       .select("Expenses")
       .eq("UserID", `${user.id}`);
     setUserExpenses(data[0]);
+    console.log(JSON.stringify(data[0]));
   }
 
   async function fetchUserStocks() {
