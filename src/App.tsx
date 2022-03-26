@@ -82,7 +82,6 @@ export const App: React.FC = () => {
       .eq("UserID", `${user.id}`);
     setUserStocks(data[0].Investments);
     console.log(data[0].Investments);
-    console.log("I am run");
   }
   return (
     <ColorSchemeProvider
@@ -120,7 +119,7 @@ export const App: React.FC = () => {
                   <Grid.Col span={8}>
                     <ExpenseTable />
                   </Grid.Col>
-                  <Grid.Col span={2}>
+                  <Grid.Col span={4}>
                     <AddExpense />
                   </Grid.Col>
                   <Grid.Col span={2}>
