@@ -70,7 +70,7 @@ export const App: React.FC = () => {
     let { data } = await supabase
       .from("UserFinanceData")
       .select("Expenses")
-      .eq("UserID", `${user.id}`);
+      .eq("id", `${user.id}`);
     setUserExpenses(data[0]);
     console.log(JSON.stringify(data[0]));
   }
@@ -79,7 +79,7 @@ export const App: React.FC = () => {
     let { data, error } = await supabase
       .from("UserFinanceData")
       .select("Investments")
-      .eq("UserID", `${user.id}`);
+      .eq("id", `${user.id}`);
     setUserStocks(data[0].Investments);
     console.log(data[0].Investments);
   }
