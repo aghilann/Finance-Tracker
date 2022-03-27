@@ -1,4 +1,3 @@
-import { AnyNsRecord } from "dns";
 import { createContext } from "react";
 import { JSONResponse, ExpenseList } from "./App";
 

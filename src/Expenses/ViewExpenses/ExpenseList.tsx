@@ -75,7 +75,6 @@ export const ExpenseTable: React.FC = () => {
       )
       .flat(); // Flatten category arrays into 1 expense array
 
-    // console.log(arrExpenses);
     const rows = arrExpenses.map((row) => (
       <tr key={row.name}>
         <td>{row.name}</td>

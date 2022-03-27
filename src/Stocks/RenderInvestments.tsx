@@ -14,6 +14,7 @@ import { data } from "../Expenses/ViewExpenses/data";
 import { UserContext } from "../UserContext";
 import { fetchStocks } from "./fetchStocks";
 import { IStock } from "../App";
+import { Http2ServerRequest } from "http2";
 
 const useStyles = createStyles((theme) => ({
   root: {
@@ -115,6 +116,6 @@ export const RenderInvestments: React.FC<IProps> = ({ stocks }) => {
     </div>
   );
 };
-function https(https: any): Response | Promise<Response> {
+function https(https: Http2ServerRequest): Response | Promise<Response> {
   throw new Error("Function not implemented.");
 }

@@ -52,7 +52,6 @@ export const AddExpense: React.FC = () => {
     currentUserID: string,
     updatedExpenses: Object
   ) {
-    // console.log(`So at least this is here ${JSON.stringify(updatedExpenses)}`);
     const { data, error } = await supabase
       .from("UserFinanceData")
       .update({ Expenses: updatedExpenses })
@@ -61,7 +60,14 @@ export const AddExpense: React.FC = () => {
     fetchUserFinances();
   }
 
-  const form: any = useForm({
+  // Create an interface for form data
+  interface FormData {
+    expenseName: string;
+    expenseType: string;
+    price: number;
+  }
+
+  const form = useForm({
     initialValues: {
       expenseName: "",
       expenseType: "",
@@ -75,7 +81,6 @@ export const AddExpense: React.FC = () => {
   });
 
   const handleForm = (expenseObject: expenseObject) => {
-    // console.log("HandleForm is below");
     const price: number = expenseObject.price;
     const name: string = expenseObject.expenseName;
     const expenseType = expenseObject.expenseType;
@@ -91,7 +96,9 @@ export const AddExpense: React.FC = () => {
   };
   return (
     <Container>
-      <form onSubmit={form.onSubmit((values: any) => handleForm(values))}>
+      <form
+        onSubmit={form.onSubmit((values: expenseObject) => handleForm(values))}
+      >
         <TextInput
           required
           label="Expense Name"

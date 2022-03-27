@@ -5,8 +5,12 @@ import { UserContext } from "../UserContext";
 import { Button, ButtonProps, Group, Text } from "@mantine/core";
 import { MarkGithubIcon } from "@primer/octicons-react";
 
-export const GithubButton: React.FC<any> = ({ method, message }) => {
-  // !!! Change from any type
+interface IProps {
+  method: any;
+  message: string;
+}
+
+export const GithubButton: React.FC<IProps> = ({ method, message }) => {
   const { user } = useContext(UserContext);
   return (
     <Button
@@ -66,7 +70,6 @@ export const IsLoggedIn = () => {
     await supabase.auth.signOut();
     setUser(null);
   }
-  // console.log(user)
   if (user) {
     return (
       <>
