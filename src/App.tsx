@@ -39,6 +39,8 @@ export const BaseExpense: ExpenseList = {
   Miscellaneous: [],
 };
 
+export type IStock = { name: string; holdings: number };
+
 export const App: React.FC = () => {
   const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
     key: "mantine-color-scheme",
@@ -52,7 +54,7 @@ export const App: React.FC = () => {
 
   const [user, setUser] = useState(null);
   const [userExpenses, setUserExpenses] = useState([BaseExpense]);
-  const [stocks, setUserStocks] = useState<string[]>([]);
+  const [stocks, setUserStocks] = useState<IStock[]>([]);
 
   useEffect(() => {
     if (!!user) {
@@ -72,7 +74,6 @@ export const App: React.FC = () => {
       .select("Expenses")
       .eq("id", `${user.id}`);
     setUserExpenses(data[0]);
-    console.log(JSON.stringify(data[0]));
   }
 
   async function fetchUserStocks() {
@@ -81,7 +82,6 @@ export const App: React.FC = () => {
       .select("Investments")
       .eq("id", `${user.id}`);
     setUserStocks(data[0].Investments);
-    console.log(data[0].Investments);
   }
   return (
     <ColorSchemeProvider

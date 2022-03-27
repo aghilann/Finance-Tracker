@@ -1,14 +1,19 @@
-import React, { useContext, useEffect, useState } from "react";
 import {
   createStyles,
   Group,
   Paper,
+  SimpleGrid,
   Text,
   ThemeIcon,
-  SimpleGrid,
 } from "@mantine/core";
-import { ArrowUpRight, ArrowDownRight } from "tabler-icons-react";
+import axios from "axios";
+import React, { useContext, useEffect, useState } from "react";
+import { useQuery } from "react-query";
+import { ArrowDownRight, ArrowUpRight } from "tabler-icons-react";
+import { data } from "../Expenses/ViewExpenses/data";
 import { UserContext } from "../UserContext";
+import { fetchStocks } from "./fetchStocks";
+import { IStock } from "../App";
 
 const useStyles = createStyles((theme) => ({
   root: {
@@ -21,7 +26,7 @@ const useStyles = createStyles((theme) => ({
 }));
 
 interface IProps {
-  stocks: string[];
+  stocks: IStock[];
 }
 
 export const RenderInvestments: React.FC<IProps> = ({ stocks }) => {
@@ -30,42 +35,17 @@ export const RenderInvestments: React.FC<IProps> = ({ stocks }) => {
   const { user } = useContext(UserContext);
 
   useEffect(() => {
-    if (stocks.length != 0) {
-      let url = "";
-      stocks.forEach((stock, index) => {
-        url += stock;
-        if (index != stocks.length) {
-          url += "%2C";
-        }
-      });
-      const options = {
-        method: "GET",
-        headers: {
-          "X-RapidAPI-Host": "mboum-finance.p.rapidapi.com",
-          "X-RapidAPI-Key":
-            "d6a49c2ae0mshf9dafc96f6c764ep1e393cjsn953170446f33",
-        },
-      };
-      fetch(
-        `https://mboum-finance.p.rapidapi.com/qu/quote?symbol=${url}`,
-        options
-      )
-        .then((response) => response.json())
-        .then((response) => {
-          console.log(response);
-          console.log("Response is above");
-          setQuotes(response);
-        })
-        .catch((err) => console.error(err));
+    if (stocks.length > 0) {
+      const stockTickers = stocks.map((stock) => stock.name);
+      fetchStocks(stockTickers, setQuotes);
     }
   }, [stocks]);
 
-  const stats = quotes.map((stat: any) => {
+  const stats = quotes.map((stat: any, i) => {
     const DiffIcon =
       stat.regularMarketChangePercent > 0 ? ArrowUpRight : ArrowDownRight;
-
     return (
-      <Paper withBorder p="md" radius="md" key={stat.title}>
+      <Paper withBorder p="md" radius="md" key={stat.longName}>
         <Group position="apart">
           <div>
             <Text
@@ -75,7 +55,7 @@ export const RenderInvestments: React.FC<IProps> = ({ stocks }) => {
               size="xs"
               className={classes.label}
             >
-              {stat.longName}
+              {stat.longName} : {stocks[i].holdings}
             </Text>
             <Text weight={700} size="xl">
               {stat.value}
@@ -105,16 +85,36 @@ export const RenderInvestments: React.FC<IProps> = ({ stocks }) => {
             {Math.abs(stat.regularMarketChangePercent).toFixed(2)}%
           </Text>{" "}
           {stat.regularMarketChangePercent > 0 ? "increase" : "decrease"}{" "}
-          compared to trading day.
+          compared to the last trading day.
         </Text>
       </Paper>
     );
   });
+
   return (
     <div className={classes.root}>
       <SimpleGrid cols={3} breakpoints={[{ maxWidth: "sm", cols: 1 }]}>
         {stats}
       </SimpleGrid>
+      {/* <Text
+        sx={(theme) => ({
+          // subscribe to color scheme changes
+          backgroundColor:
+            theme.colorScheme === "dark"
+              ? theme.colors.dark[5]
+              : theme.colors.blue[9],
+
+          // or use any other static values from theme
+          color: theme.colors.gray[1],
+          fontSize: theme.fontSizes.sm,
+          fontWeight: 500,
+        })}
+      >
+        Can anybody read this
+      </Text> */}
     </div>
   );
 };
+function https(https: any): Response | Promise<Response> {
+  throw new Error("Function not implemented.");
+}
