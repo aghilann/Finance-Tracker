@@ -22,24 +22,7 @@ import { AddExpense } from "./Expenses/InputExpense/AddExpense";
 import { LoadExpenses } from "./Expenses/LoadExpenseValue/LoadExpenses";
 import { ExpenseTable } from "./Expenses/ViewExpenses/ExpenseList";
 import { RenderInvestments } from "./Stocks/RenderInvestments";
-
-export type JSONResponse = { Expenses: ExpenseList };
-
-export interface ExpenseList {
-  Food: expenseItem[];
-  Entertainment: expenseItem[];
-  Miscellaneous: expenseItem[];
-}
-
-export type expenseItem = undefined | { string: number };
-
-export const BaseExpense: ExpenseList = {
-  Food: [],
-  Entertainment: [],
-  Miscellaneous: [],
-};
-
-export type IStock = { name: string; holdings: number };
+import { BaseExpense, IStock } from "./AppTypes";
 
 export const App: React.FC = () => {
   const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({

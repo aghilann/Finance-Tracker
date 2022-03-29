@@ -8,7 +8,8 @@ export const useStyles = createStyles((theme) => ({
     } 0%, ${theme.colors[theme.primaryColor][7]} 100%)`,
     padding: theme.spacing.xl * 1.5,
     borderRadius: theme.radius.md,
-
+    margin: theme.spacing.xl,
+    position: "relative",
     [theme.fn.smallerThan("sm")]: {
       flexDirection: "column",
     },

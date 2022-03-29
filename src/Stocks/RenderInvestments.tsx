@@ -13,7 +13,7 @@ import { ArrowDownRight, ArrowUpRight } from "tabler-icons-react";
 import { data } from "../Expenses/ViewExpenses/data";
 import { UserContext } from "../UserContext";
 import { fetchStocks } from "./fetchStocks";
-import { IStock } from "../App";
+import { IStock } from "../AppTypes";
 import { Http2ServerRequest } from "http2";
 
 const useStyles = createStyles((theme) => ({

@@ -10,16 +10,20 @@ import {
 } from "@mantine/core";
 import { DatePicker } from "@mantine/dates";
 import { useForm } from "@mantine/form";
-import { expenseItem } from "../../App";
+import { expenseItem } from "../../AppTypes";
 import { supabase } from "../../supabaseClient";
 import { count } from "console";
 import "./AddExpense.css";
+import { _DEFAULT_THEME as theme } from "../../Data/ThemeObject";
 
 interface expenseObject {
   expenseName: string;
   expenseType: string;
   price: number;
 }
+
+let gradientOne = theme.colors[theme.primaryColor][4];
+let gradientTwo = theme.colors[theme.primaryColor][7];
 
 const useStyles = createStyles((theme) => ({
   root: {
@@ -58,13 +62,6 @@ export const AddExpense: React.FC = () => {
       .eq("UserID", currentUserID);
 
     fetchUserFinances();
-  }
-
-  // Create an interface for form data
-  interface FormData {
-    expenseName: string;
-    expenseType: string;
-    price: number;
   }
 
   const form = useForm({
@@ -143,7 +140,7 @@ export const AddExpense: React.FC = () => {
           <Button
             type="submit"
             variant="gradient"
-            gradient={{ from: "indigo", to: "cyan" }}
+            gradient={{ from: gradientOne, to: gradientTwo }}
           >
             Submit Expense
           </Button>
