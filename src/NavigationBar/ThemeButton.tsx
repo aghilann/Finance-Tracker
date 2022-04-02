@@ -1,11 +1,16 @@
-import { ActionIcon, useMantineColorScheme } from "@mantine/core";
+import { ActionIcon, createStyles, useMantineColorScheme } from "@mantine/core";
 import { Sun, MoonStars } from "tabler-icons-react";
 
-// Button to change global theme
+const useStyles = createStyles((theme) => ({
+  spans: {
+    backgroundImage: "#FFFFFF",
+  },
+})); // !!!
+
 export function ThemeButton() {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
   const dark = colorScheme === "dark";
-
+  const { classes } = useStyles();
   return (
     <ActionIcon
       variant="outline"

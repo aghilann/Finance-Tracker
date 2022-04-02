@@ -86,7 +86,7 @@ export const App: React.FC = () => {
             }}
           >
             <NavigationBar links={links} />
-            {!!user || ( // Change true to user after GitHub update
+            {!!user || (
               <div className="diagonal-box animated-background">
                 <div className="content">
                   <Hero></Hero>
@@ -105,10 +105,8 @@ export const App: React.FC = () => {
                   <Grid.Col span={4}>
                     <AddExpense />
                   </Grid.Col>
-                  <Grid.Col span={2}>
-                    <RenderInvestments stocks={stocks} />
-                  </Grid.Col>
                 </Grid>
+                <RenderInvestments stocks={stocks} />
               </>
             )}
           </UserContext.Provider>
