@@ -54,7 +54,7 @@ export const AddExpense: React.FC = () => {
 
   async function updateUserFinances(
     currentUserID: string,
-    updatedExpenses: Object
+    updatedExpenses: Array<any>
   ) {
     const { data, error } = await supabase
       .from("UserFinanceData")
@@ -84,7 +84,15 @@ export const AddExpense: React.FC = () => {
     const UserInputObject: Record<string, unknown> = {};
     UserInputObject[name] = price;
     if (userExpenses !== undefined && userExpenses.Expenses !== undefined) {
-      setUserExpenses(userExpenses.Expenses[expenseType].push(UserInputObject));
+      // Push { category: expenseType, name: name, price: 100 } to the array and set the array to the userExpenses
+      setUserExpenses((userExpenses: any) =>
+        userExpenses.push({
+          category: expenseType,
+          name: name,
+          price: price,
+        })
+      );
+
       form.setFieldValue("expenseName", "");
       form.setFieldValue("expenseType", null);
       form.setFieldValue("price", 0);

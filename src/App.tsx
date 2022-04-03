@@ -24,6 +24,12 @@ import { ExpenseTable } from "./Expenses/ViewExpenses/ExpenseList";
 import { RenderInvestments } from "./Stocks/RenderInvestments";
 import { BaseExpense, IStock } from "./AppTypes";
 
+export interface expenseItem {
+  name: string;
+  category: string;
+  price: number;
+}
+
 export const App: React.FC = () => {
   const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
     key: "mantine-color-scheme",
@@ -36,7 +42,7 @@ export const App: React.FC = () => {
   useHotkeys([["mod+J", () => toggleColorScheme()]]);
 
   const [user, setUser] = useState(null);
-  const [userExpenses, setUserExpenses] = useState([BaseExpense]);
+  const [userExpenses, setUserExpenses] = useState([]);
   const [stocks, setUserStocks] = useState<IStock[]>([]);
 
   useEffect(() => {

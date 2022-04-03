@@ -5,54 +5,53 @@ import { Container, Text } from "@mantine/core";
 import { useStyles, GetValues, StatsGroupProps } from "./useStyles";
 import "../../App.css";
 
-let foodSum: number | unknown;
-let entertainmentSum: number | unknown;
-let miscellaneousSum: number | unknown;
+let foodSum: number | unknown = 0;
+let entertainmentSum: number | unknown = 0;
+let miscellaneousSum: number | unknown = 0;
+
+type expenseItem = {
+  name: string;
+  category: string;
+  price: number;
+};
 
 export const LoadExpenses = () => {
   const { userExpenses, setUserExpenses } = useContext(UserContext);
 
-  const { classes } = useStyles();
   useEffect(() => {
     () => {};
-  });
-  if (
-    userExpenses != undefined &&
-    userExpenses.Expenses != undefined &&
-    userExpenses.Expenses.Food != undefined
-  ) {
-    if (userExpenses.Expenses.Food.length != 0) {
-      foodSum = Object.values(GetValues(userExpenses.Expenses.Food)).reduce(
-        (a: number | unknown, b: number | unknown) =>
-          typeof a === "number" && typeof b === "number" ? a + b : 0
-      );
-    } else {
-      foodSum = 0;
-    }
-    if (userExpenses.Expenses.Entertainment.length != 0) {
-      entertainmentSum = Object.values(
-        GetValues(userExpenses.Expenses.Entertainment)
-      ).reduce((a: number | unknown, b: number | unknown) =>
-        typeof a === "number" && typeof b === "number" ? a + b : 0
-      );
-    } else {
-      entertainmentSum = -1;
-    }
+  }, [userExpenses]);
 
-    if (userExpenses.Expenses.Miscellaneous.length != 0) {
-      miscellaneousSum = Object.values(
-        GetValues(userExpenses.Expenses.Miscellaneous)
-      ).reduce((a: number | unknown, b: number | unknown) =>
-        typeof a === "number" && typeof b === "number" ? a + b : 0
-      );
-    } else {
-      miscellaneousSum = -1;
-    }
+  if (userExpenses.Expenses !== undefined) {
+    console.log("LOOK BELOW MEE NOW");
+    console.log(userExpenses.Expenses);
+
+    foodSum = userExpenses.Expenses.filter(
+      (e: expenseItem) => e.category === "Food"
+    )
+      .map((e: expenseItem) => e.price)
+      .reduce((a: number, b: number) => a + b, 0);
+    console.log(foodSum);
+
+    entertainmentSum = userExpenses.Expenses.filter(
+      (e: expenseItem) => e.category === "Entertainment"
+    )
+      .map((e: expenseItem) => e.price)
+      .reduce((a: number, b: number) => a + b, 0);
+
+    miscellaneousSum = userExpenses.Expenses.filter(
+      (e: expenseItem) => e.category === "Miscellaneous"
+    )
+      .map((e: expenseItem) => e.price)
+      .reduce((a: number, b: number) => a + b, 0);
   } else {
-    foodSum = "Loading";
-    entertainmentSum = "Loading";
-    miscellaneousSum = "Loading";
+    foodSum = 0;
+    entertainmentSum = 0;
+    miscellaneousSum = 0;
   }
+
+  console.log("foodSum: " + foodSum);
+  const { classes } = useStyles();
   let userData: StatsGroupProps = {
     data: [
       {
