@@ -29,8 +29,8 @@ export const ExpenseTable: React.FC = () => {
         <td>${row.price}</td>
         <td>{row.category}</td>
         {/* <td>
-            <CloseButton title="Close popover" size="xl" iconSize={20} />
-          </td> */}
+          <CloseButton title="Close popover" size="xl" iconSize={20} />
+        </td> */}
       </tr>
     ));
   }
@@ -46,7 +46,7 @@ export const ExpenseTable: React.FC = () => {
           >
             <tr>
               <th>Name</th>
-              <th>Email</th>
+              <th>Cost</th>
               <th>Category</th>
             </tr>
           </thead>

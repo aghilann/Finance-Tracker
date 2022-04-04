@@ -59,7 +59,7 @@ export const AddExpense: React.FC = () => {
     const { data, error } = await supabase
       .from("UserFinanceData")
       .update({ Expenses: updatedExpenses })
-      .eq("UserID", currentUserID);
+      .eq("id", currentUserID);
 
     fetchUserFinances();
   }
@@ -78,25 +78,23 @@ export const AddExpense: React.FC = () => {
   });
 
   const handleForm = (expenseObject: expenseObject) => {
-    const price: number = expenseObject.price;
-    const name: string = expenseObject.expenseName;
     const expenseType = expenseObject.expenseType;
-    const UserInputObject: Record<string, unknown> = {};
-    UserInputObject[name] = price;
+    const name: string = expenseObject.expenseName;
+    const price: number = expenseObject.price;
     if (userExpenses !== undefined && userExpenses.Expenses !== undefined) {
-      // Push { category: expenseType, name: name, price: 100 } to the array and set the array to the userExpenses
-      setUserExpenses((userExpenses: any) =>
-        userExpenses.push({
-          category: expenseType,
-          name: name,
-          price: price,
-        })
-      );
+      const newExpense = {
+        category: expenseType,
+        name: name,
+        price: price,
+      };
 
+      const newExpenses = [...userExpenses.Expenses, newExpense];
+      setUserExpenses(() => (userExpenses.Expenses = newExpenses));
+      updateUserFinances(user.id, newExpenses);
       form.setFieldValue("expenseName", "");
       form.setFieldValue("expenseType", null);
       form.setFieldValue("price", 0);
-      updateUserFinances(user.id, userExpenses.Expenses);
+      updateUserFinances(user.id, userExpenses);
     }
   };
   return (

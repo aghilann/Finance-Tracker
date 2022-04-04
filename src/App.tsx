@@ -7,7 +7,6 @@ import {
   ColorScheme,
   MantineTheme,
   Button,
-  Grid,
   Group,
   Modal,
 } from "@mantine/core";
@@ -18,11 +17,10 @@ import { supabase } from "./supabaseClient";
 import { isEqual } from "lodash";
 import { UserContext } from "./UserContext";
 import { Hero } from "./HeroSection/Hero";
-import { AddExpense } from "./Expenses/InputExpense/AddExpense";
-import { LoadExpenses } from "./Expenses/LoadExpenseValue/LoadExpenses";
-import { ExpenseTable } from "./Expenses/ViewExpenses/ExpenseList";
 import { RenderInvestments } from "./Stocks/RenderInvestments";
 import { BaseExpense, IStock } from "./AppTypes";
+import { ExpenseComponentsGrid } from "./ExpenseComponentsGrid";
+import AddStock from "./AddStock/AddStock";
 
 export interface expenseItem {
   name: string;
@@ -57,7 +55,7 @@ export const App: React.FC = () => {
     }
   }, [user]);
 
-  async function fetchUserFinances() {
+  async function fetchUserFinances(): Promise<void> {
     let { data } = await supabase
       .from("UserFinanceData")
       .select("Expenses")
@@ -65,7 +63,7 @@ export const App: React.FC = () => {
     setUserExpenses(data[0]);
   }
 
-  async function fetchUserStocks() {
+  async function fetchUserStocks(): Promise<void> {
     let { data, error } = await supabase
       .from("UserFinanceData")
       .select("Investments")
@@ -99,20 +97,11 @@ export const App: React.FC = () => {
                 </div>
               </div>
             )}
-            {user == null || ( // !!! Change false to User after GitHub is online
+            {user == null || (
               <>
-                <Grid grow>
-                  <Grid.Col span={8}>
-                    <LoadExpenses />
-                  </Grid.Col>
-                  <Grid.Col span={8}>
-                    <ExpenseTable />
-                  </Grid.Col>
-                  <Grid.Col span={4}>
-                    <AddExpense />
-                  </Grid.Col>
-                </Grid>
+                {ExpenseComponentsGrid}
                 <RenderInvestments stocks={stocks} />
+                <AddStock></AddStock>
               </>
             )}
           </UserContext.Provider>

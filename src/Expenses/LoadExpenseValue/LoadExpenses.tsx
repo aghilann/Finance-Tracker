@@ -23,15 +23,11 @@ export const LoadExpenses = () => {
   }, [userExpenses]);
 
   if (userExpenses.Expenses !== undefined) {
-    console.log("LOOK BELOW MEE NOW");
-    console.log(userExpenses.Expenses);
-
     foodSum = userExpenses.Expenses.filter(
       (e: expenseItem) => e.category === "Food"
     )
       .map((e: expenseItem) => e.price)
       .reduce((a: number, b: number) => a + b, 0);
-    console.log(foodSum);
 
     entertainmentSum = userExpenses.Expenses.filter(
       (e: expenseItem) => e.category === "Entertainment"
@@ -50,7 +46,6 @@ export const LoadExpenses = () => {
     miscellaneousSum = 0;
   }
 
-  console.log("foodSum: " + foodSum);
   const { classes } = useStyles();
   let userData: StatsGroupProps = {
     data: [
