@@ -15,6 +15,7 @@ import { UserContext } from "../UserContext";
 import { fetchStocks } from "./fetchStocks";
 import { IStock } from "../AppTypes";
 import { Http2ServerRequest } from "http2";
+import PortfolioChart from "./PortfolioChart";
 
 const useStyles = createStyles((theme) => ({
   root: {
@@ -27,7 +28,7 @@ const useStyles = createStyles((theme) => ({
 }));
 
 interface IProps {
-  stocks: IStock[];
+  stocks: Array<IStock>;
 }
 
 export const RenderInvestments: React.FC<IProps> = ({ stocks }) => {
@@ -41,7 +42,6 @@ export const RenderInvestments: React.FC<IProps> = ({ stocks }) => {
       fetchStocks(stockTickers, setQuotes);
     }
   }, [stocks]);
-
   const stats = quotes.map((stat: any, i) => {
     const DiffIcon =
       stat.regularMarketChangePercent > 0 ? ArrowUpRight : ArrowDownRight;
@@ -56,7 +56,7 @@ export const RenderInvestments: React.FC<IProps> = ({ stocks }) => {
               size="xs"
               className={classes.label}
             >
-              {stat.longName} : {stocks[i].holdings}
+              {stat.longName} ${Math.abs(stat.regularMarketPrice).toFixed(2)}{" "}
             </Text>
             <Text weight={700} size="xl">
               {stat.value}
@@ -83,6 +83,7 @@ export const RenderInvestments: React.FC<IProps> = ({ stocks }) => {
             color={stat.regularMarketChangePercent > 0 ? "teal" : "red"}
             weight={700}
           >
+            <span> </span>
             {Math.abs(stat.regularMarketChangePercent).toFixed(2)}%
           </Text>{" "}
           {stat.regularMarketChangePercent > 0 ? "increase" : "decrease"}{" "}
@@ -97,22 +98,7 @@ export const RenderInvestments: React.FC<IProps> = ({ stocks }) => {
       <SimpleGrid cols={3} breakpoints={[{ maxWidth: "sm", cols: 1 }]}>
         {stats}
       </SimpleGrid>
-      {/* <Text
-        sx={(theme) => ({
-          // subscribe to color scheme changes
-          backgroundColor:
-            theme.colorScheme === "dark"
-              ? theme.colors.dark[5]
-              : theme.colors.blue[9],
-
-          // or use any other static values from theme
-          color: theme.colors.gray[1],
-          fontSize: theme.fontSizes.sm,
-          fontWeight: 500,
-        })}
-      >
-        Can anybody read this
-      </Text> */}
+      <PortfolioChart stocks={stocks} quotes={quotes} />
     </div>
   );
 };

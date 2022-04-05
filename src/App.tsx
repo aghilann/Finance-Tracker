@@ -46,14 +46,9 @@ export const App: React.FC = () => {
   useEffect(() => {
     if (!!user) {
       fetchUserFinances();
-    }
-  }, [user, setUserExpenses]);
-
-  useEffect(() => {
-    if (!!user) {
       fetchUserStocks();
     }
-  }, [user]);
+  }, [user, setUserExpenses]);
 
   async function fetchUserFinances(): Promise<void> {
     let { data } = await supabase
