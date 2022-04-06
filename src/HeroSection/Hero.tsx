@@ -1,18 +1,19 @@
-import React from "react";
+import "../App.css";
+
 import {
-  createStyles,
-  Image,
-  Container,
-  Title,
   Button,
+  Container,
   Group,
-  Text,
+  Image,
   List,
+  Text,
   ThemeIcon,
+  Title,
+  createStyles,
 } from "@mantine/core";
+
 import { Check } from "tabler-icons-react";
 import image from "./image.svg";
-import "../App.css";
 
 const useStyles = createStyles((theme) => ({
   inner: {

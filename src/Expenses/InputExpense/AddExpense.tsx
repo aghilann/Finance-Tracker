@@ -1,20 +1,17 @@
-import React, { BaseSyntheticEvent, useContext, useEffect } from "react";
-import { UserContext } from "../../UserContext";
 import {
-  createStyles,
+  Button,
+  Container,
+  NumberInput,
   Select,
   TextInput,
-  NumberInput,
-  Container,
-  Button,
+  createStyles,
 } from "@mantine/core";
-import { DatePicker } from "@mantine/dates";
-import { useForm } from "@mantine/form";
-import { expenseItem } from "../../AppTypes";
+import React, { useContext } from "react";
+
+import { UserContext } from "../../UserContext";
 import { supabase } from "../../supabaseClient";
-import { count } from "console";
-import "./AddExpense.css";
 import { _DEFAULT_THEME as theme } from "../../Data/ThemeObject";
+import { useForm } from "@mantine/form";
 
 interface expenseObject {
   expenseName: string;
@@ -99,6 +96,7 @@ export const AddExpense: React.FC = () => {
       updateUserFinances(user.id, userExpenses);
     }
   };
+
   return (
     <Container>
       <form

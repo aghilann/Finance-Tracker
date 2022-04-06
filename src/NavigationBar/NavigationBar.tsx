@@ -1,9 +1,10 @@
+import { Burger, Container, Group, Header, createStyles } from "@mantine/core";
 import React, { useState } from "react";
-import { createStyles, Header, Container, Group, Burger } from "@mantine/core";
-import { useBooleanToggle } from "@mantine/hooks";
-import { ThemeButton } from "./ThemeButton";
+
 import { Children } from "react";
 import { IsLoggedIn } from "./Auth";
+import { ThemeButton } from "./ThemeButton";
+import { useBooleanToggle } from "@mantine/hooks";
 
 const useStyles = createStyles((theme) => ({
   header: {

@@ -1,21 +1,22 @@
+import { ArrowDownRight, ArrowUpRight } from "tabler-icons-react";
 import {
-  createStyles,
   Group,
   Paper,
   SimpleGrid,
   Text,
   ThemeIcon,
+  createStyles,
 } from "@mantine/core";
-import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import { useQuery } from "react-query";
-import { ArrowDownRight, ArrowUpRight } from "tabler-icons-react";
-import { data } from "../Expenses/ViewExpenses/data";
-import { UserContext } from "../UserContext";
-import { fetchStocks } from "./fetchStocks";
-import { IStock } from "../AppTypes";
+
 import { Http2ServerRequest } from "http2";
+import { IStock } from "../AppTypes";
 import PortfolioChart from "./PortfolioChart";
+import { UserContext } from "../UserContext";
+import axios from "axios";
+import { data } from "../Expenses/ViewExpenses/data";
+import { fetchStocks } from "./fetchStocks";
+import { useQuery } from "react-query";
 
 const useStyles = createStyles((theme) => ({
   root: {

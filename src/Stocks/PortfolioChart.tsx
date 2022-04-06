@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
+
 import { IStock } from "../AppTypes";
+
 interface IProps {
   stocks: Array<IStock>;
   quotes: Array<any>;
