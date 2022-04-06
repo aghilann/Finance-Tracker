@@ -60,8 +60,8 @@ export const AddExpense: React.FC = () => {
       .from("UserFinanceData")
       .update({ Expenses: updatedExpenses })
       .eq("id", currentUserID);
-
     fetchUserFinances();
+    // Updating database and fetching new data
   }
 
   const form = useForm({
@@ -74,6 +74,8 @@ export const AddExpense: React.FC = () => {
     validate: {
       expenseName: (value) =>
         /^(?!\s*$).+/.test(value) ? null : "Enter a Expense Name",
+      price: (value) =>
+        /^\d+$/.test(value.toString()) ? null : "Enter a valid price",
     },
   });
 

@@ -37,11 +37,11 @@ export const App: React.FC = () => {
   const toggleColorScheme = (value?: ColorScheme) =>
     setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
 
-  useHotkeys([["mod+J", () => toggleColorScheme()]]);
-
   const [user, setUser] = useState(null);
   const [userExpenses, setUserExpenses] = useState([]);
   const [stocks, setUserStocks] = useState<IStock[]>([]);
+
+  useHotkeys([["mod+J", () => toggleColorScheme()]]);
 
   useEffect(() => {
     if (!!user) {
@@ -65,6 +65,25 @@ export const App: React.FC = () => {
       .eq("id", `${user.id}`);
     setUserStocks(data[0].Investments);
   }
+
+  const displayWhenSignedIn = (stocks: IStock[]) => {
+    return (
+      <>
+        {ExpenseComponentsGrid}
+        <RenderInvestments stocks={stocks} />
+        <AddStock></AddStock>
+      </>
+    );
+  };
+
+  const displayWhenLoggedOut = (
+    <div className="diagonal-box animated-background">
+      <div className="content">
+        <Hero />
+      </div>
+    </div>
+  );
+
   return (
     <ColorSchemeProvider
       colorScheme={colorScheme}
@@ -85,20 +104,9 @@ export const App: React.FC = () => {
             }}
           >
             <NavigationBar links={links} />
-            {!!user || (
-              <div className="diagonal-box animated-background">
-                <div className="content">
-                  <Hero></Hero>
-                </div>
-              </div>
-            )}
-            {user == null || (
-              <>
-                {ExpenseComponentsGrid}
-                <RenderInvestments stocks={stocks} />
-                <AddStock></AddStock>
-              </>
-            )}
+            {!!user || displayWhenLoggedOut}
+
+            {user == null || displayWhenSignedIn(stocks)}
           </UserContext.Provider>
         </div>
       </MantineProvider>
