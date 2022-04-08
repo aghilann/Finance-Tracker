@@ -1,5 +1,6 @@
+import { ExpenseList, JSONResponse } from "./AppTypes";
+
 import { createContext } from "react";
-import { JSONResponse, ExpenseList } from "./AppTypes";
 
 const userFinanceData: JSONResponse = {
   Expenses: {
@@ -9,4 +10,4 @@ const userFinanceData: JSONResponse = {
   },
 };
 
-export const UserContext: React.Context<any> = createContext(userFinanceData);
+export const UserContext: React.Context<any> = createContext({});

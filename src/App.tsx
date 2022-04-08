@@ -1,26 +1,22 @@
-import { useState, useEffect } from "react";
 import "./App.css";
-import { NavigationBar } from "./NavigationBar/NavigationBar";
+
 import {
-  MantineProvider,
-  ColorSchemeProvider,
   ColorScheme,
-  MantineTheme,
-  Button,
-  Group,
-  Modal,
+  ColorSchemeProvider,
+  MantineProvider,
 } from "@mantine/core";
+import { useEffect, useState } from "react";
 import { useHotkeys, useLocalStorage } from "@mantine/hooks";
-import { links } from "./Data/NavbarData";
-import { _DEFAULT_THEME } from "./Data/ThemeObject";
-import { supabase } from "./supabaseClient";
-import { isEqual } from "lodash";
-import { UserContext } from "./UserContext";
-import { Hero } from "./HeroSection/Hero";
-import { RenderInvestments } from "./Stocks/RenderInvestments";
-import { BaseExpense, IStock } from "./AppTypes";
+
 import { ExpenseComponentsGrid } from "./ExpenseComponentsGrid";
-import AddStock from "./AddStock/AddStock";
+import { Hero } from "./HeroSection/Hero";
+import { IStock } from "./AppTypes";
+import { NavigationBar } from "./NavigationBar/NavigationBar";
+import { RenderInvestments } from "./Stocks/RenderInvestments";
+import { UserContext } from "./UserContext";
+import { _DEFAULT_THEME } from "./Data/ThemeObject";
+import { links } from "./Data/NavbarData";
+import { supabase } from "./supabaseClient";
 
 export interface expenseItem {
   name: string;
@@ -71,7 +67,7 @@ export const App: React.FC = () => {
       <>
         {ExpenseComponentsGrid}
         <RenderInvestments stocks={stocks} />
-        <AddStock></AddStock>
+        {/* <AddStock></AddStock> */}
       </>
     );
   };

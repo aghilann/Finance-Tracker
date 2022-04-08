@@ -1,7 +1,16 @@
-import { useEffect, useState } from "react";
-import { Autocomplete, createStyles } from "@mantine/core";
+import { Autocomplete, Button, createStyles } from "@mantine/core";
+import { BaseSyntheticEvent, useContext, useState } from "react";
+
 import { NASDAQ } from "./StockList";
-import { Button } from "@mantine/core";
+import { UserContext } from "../UserContext";
+import { fetchStocks } from "../Stocks/fetchStocks";
+import { supabase } from "../supabaseClient";
+import { useForm } from "@mantine/form";
+
+interface stockType {
+  name: string;
+  holdings: number;
+}
 
 const useStyles = createStyles((theme) => ({
   root: {
@@ -12,22 +21,58 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-const AddStock: React.FC = () => {
+interface IProps {
+  stocks: { name: string; holdings: number }[];
+  setQuotes: React.Dispatch<React.SetStateAction<any[]>>;
+}
+
+export const AddStock: React.FC<IProps> = ({ stocks, setQuotes }) => {
+  // console.log("🚀 ~ file: AddStock.tsx ~ line 22 ~ stocks", stocks);
+  const { user, fetchUserFinances } = useContext(UserContext);
   const { classes } = useStyles();
   const [value, setValue] = useState("");
-  // Anytime the value changes comsole log hello
+  const form = useForm({
+    initialValues: {
+      stock: "",
+    },
+    validate: {
+      stock: (value) => (value ? null : "Stock can't be empty"),
+    },
+  });
+
+  async function updateUserStocks(updatedStocks: stockType[]): Promise<any> {
+    console.log(
+      "🚀 ~ file: AddStock.tsx ~ line 44 ~ updateUserStocks ~ updatedStocks",
+      updatedStocks
+    );
+
+    const { data, error } = await supabase
+      .from("UserFinanceData")
+      .update({ Investments: updatedStocks })
+      .eq("id", user.id);
+  }
+
   return (
-    <form>
+    <form
+      onSubmit={(event: BaseSyntheticEvent) => {
+        event.preventDefault();
+        const newStock = { name: form.values.stock, holdings: 0 };
+        stocks.push(newStock);
+        console.log("🚀 ~ file: AddStock.tsx ~ line 54 ~ newStock", stocks);
+        updateUserStocks(stocks);
+      }}
+    >
       <Autocomplete
-        value={value}
-        onChange={setValue}
+        value={form.values.stock}
         data={NASDAQ}
         limit={4}
         className={classes.root}
+        onChange={(event) => {
+          // // console.log("🚀 ~ file: AddStock.tsx ~ line 39 ~ event", event);
+          form.setFieldValue("stock", event);
+        }}
       />
-      <Button>Submit Stock</Button>
+      <Button type="submit">Submit Stock</Button>
     </form>
   );
 };
-
-export default AddStock;

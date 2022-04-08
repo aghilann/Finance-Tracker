@@ -7,17 +7,22 @@ interface IProps {
   quotes: Array<any>;
 }
 
-// Sum the total value of all stocks
 const sumStocks = (quotes: any[], stocks: IStock[]): number => {
-  console.log("Below is the quotes in portfolio");
-  console.log(quotes);
+  // console.log(
+  // "🚀 ~ file: PortfolioChart.tsx ~ line 12 ~ sumStocks ~ quotes",
+  // quotes
+  // );
   let total = 0;
   if (quotes !== undefined) {
     quotes.forEach((quote, i) => {
       total += quote.bid * stocks[i].holdings;
+      // console.log(
+      // "🚀 ~ file: PortfolioChart.tsx ~ line 19 ~ quotes.forEach ~ total",
+      // total
+      // );
     });
   }
-  console.log(total);
+
   return total;
 };
 

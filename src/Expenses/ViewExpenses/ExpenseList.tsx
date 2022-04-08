@@ -1,21 +1,21 @@
-import React, { useState, useContext } from "react";
 import {
-  Table,
-  ScrollArea,
   CloseButton,
-  Modal,
   Container,
+  Modal,
+  ScrollArea,
+  Table,
 } from "@mantine/core";
+import React, { useContext, useState } from "react";
+import { data, useStyles } from "./data";
+
 import { UserContext } from "../../UserContext";
-import { useStyles, data } from "./data";
-import { _DEFAULT_THEME as theme } from "../../Data/ThemeObject";
-import { isArray } from "util";
-import { useEffect } from "react";
-import { forEach } from "lodash";
 import { expenseItem } from "../../App";
+import { forEach } from "lodash";
+import { isArray } from "util";
+import { _DEFAULT_THEME as theme } from "../../Data/ThemeObject";
+import { useEffect } from "react";
 
 export const ExpenseTable: React.FC = () => {
-  /// When real data comes, use { data } and <TableScrollAreaProps>
   const { classes, cx } = useStyles();
   const [scrolled, setScrolled] = useState(false);
   const { user, setUser, userExpenses, setUserExpenses, fetchUserFinances } =

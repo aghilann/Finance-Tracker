@@ -9,6 +9,7 @@ import {
 } from "@mantine/core";
 import React, { useContext, useEffect, useState } from "react";
 
+import { AddStock } from "../AddStock/AddStock";
 import { Http2ServerRequest } from "http2";
 import { IStock } from "../AppTypes";
 import PortfolioChart from "./PortfolioChart";
@@ -100,6 +101,7 @@ export const RenderInvestments: React.FC<IProps> = ({ stocks }) => {
         {stats}
       </SimpleGrid>
       <PortfolioChart stocks={stocks} quotes={quotes} />
+      <AddStock stocks={stocks} />
     </div>
   );
 };
