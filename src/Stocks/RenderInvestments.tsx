@@ -44,6 +44,7 @@ export const RenderInvestments: React.FC<IProps> = ({ stocks }) => {
       fetchStocks(stockTickers, setQuotes);
     }
   }, [stocks]);
+
   const stats = quotes.map((stat: any, i) => {
     const DiffIcon =
       stat.regularMarketChangePercent > 0 ? ArrowUpRight : ArrowDownRight;
@@ -99,12 +100,13 @@ export const RenderInvestments: React.FC<IProps> = ({ stocks }) => {
     <div className={classes.root}>
       <SimpleGrid cols={3} breakpoints={[{ maxWidth: "sm", cols: 1 }]}>
         {stats}
+        <AddStock stocks={stocks} setQuotes={setQuotes} />
       </SimpleGrid>
       <PortfolioChart stocks={stocks} quotes={quotes} />
-      <AddStock stocks={stocks} />
     </div>
   );
 };
+// TODO: Add graph for total value of investments
 function https(https: Http2ServerRequest): Response | Promise<Response> {
   throw new Error("Function not implemented.");
 }

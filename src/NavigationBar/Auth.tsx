@@ -49,8 +49,6 @@ export const IsLoggedIn = () => {
     });
   }, [user]);
 
-  // const [user, setUser] = useState(null);
-
   useEffect(() => {
     checkUser();
     window.addEventListener("hashchange", function () {
@@ -60,6 +58,7 @@ export const IsLoggedIn = () => {
 
   async function checkUser() {
     const user = supabase.auth.user();
+    // console.dir("🚀 ~ file: Auth.tsx ~ line 61 ~ checkUser ~ user", user)
     setUser(user);
   }
   async function signInWithGithub() {

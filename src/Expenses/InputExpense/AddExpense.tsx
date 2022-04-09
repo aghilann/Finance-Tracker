@@ -71,6 +71,9 @@ export const AddExpense: React.FC = () => {
     validate: {
       expenseName: (value) =>
         /^(?!\s*$).+/.test(value) ? null : "Enter a Expense Name",
+
+      expenseType: (value) =>
+        /^(?!\s*$).+/.test(value) ? null : "Enter a Expense Name",
       price: (value) =>
         /^\d+$/.test(value.toString()) ? null : "Enter a valid price",
     },
@@ -91,7 +94,7 @@ export const AddExpense: React.FC = () => {
       setUserExpenses(() => (userExpenses.Expenses = newExpenses));
       updateUserFinances(user.id, newExpenses);
       form.setFieldValue("expenseName", "");
-      form.setFieldValue("expenseType", null);
+      form.setFieldValue("expenseType", "");
       form.setFieldValue("price", 0);
       updateUserFinances(user.id, userExpenses);
     }

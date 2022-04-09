@@ -1,4 +1,10 @@
-import { Autocomplete, Button, createStyles } from "@mantine/core";
+import {
+  Autocomplete,
+  Box,
+  Button,
+  NumberInput,
+  createStyles,
+} from "@mantine/core";
 import { BaseSyntheticEvent, useContext, useState } from "react";
 
 import { NASDAQ } from "./StockList";
@@ -13,7 +19,21 @@ interface stockType {
 }
 
 const useStyles = createStyles((theme) => ({
-  root: {
+  addTickerTextInput: {
+    width: "50%",
+    margin: "auto",
+    padding: "10px",
+    display: "inline-block",
+  },
+
+  addTickerButton: {
+    margin: "auto",
+    padding: "10px",
+    display: "inline-block",
+    width: "100%",
+  },
+
+  addTickerNumberInput: {
     width: "50%",
     margin: "auto",
     padding: "10px",
@@ -33,10 +53,13 @@ export const AddStock: React.FC<IProps> = ({ stocks, setQuotes }) => {
   const [value, setValue] = useState("");
   const form = useForm({
     initialValues: {
-      stock: "",
+      stock: null,
+      holdings: null,
     },
     validate: {
       stock: (value) => (value ? null : "Stock can't be empty"),
+      holdings: (value) =>
+        /^[1-9]\d*/.test(value.toString()) ? null : "Holdings can't be empty",
     },
   });
 
@@ -53,26 +76,49 @@ export const AddStock: React.FC<IProps> = ({ stocks, setQuotes }) => {
   }
 
   return (
-    <form
-      onSubmit={(event: BaseSyntheticEvent) => {
-        event.preventDefault();
-        const newStock = { name: form.values.stock, holdings: 0 };
-        stocks.push(newStock);
-        console.log("🚀 ~ file: AddStock.tsx ~ line 54 ~ newStock", stocks);
-        updateUserStocks(stocks);
-      }}
-    >
-      <Autocomplete
-        value={form.values.stock}
-        data={NASDAQ}
-        limit={4}
-        className={classes.root}
-        onChange={(event) => {
-          // // console.log("🚀 ~ file: AddStock.tsx ~ line 39 ~ event", event);
-          form.setFieldValue("stock", event);
+    <Box>
+      <form
+        onSubmit={(event: BaseSyntheticEvent) => {
+          // event.preventDefault(); TODO: Update UI without refresh
+          const newStock = {
+            name: form.values.stock,
+            holdings: form.values.holdings,
+          };
+          stocks.push(newStock);
+          form.setFieldValue("stock", null);
+          form.setFieldValue("holdings", null);
+          console.log("🚀 ~ file: AddStock.tsx ~ line 54 ~ newStock", stocks);
+          updateUserStocks(stocks);
         }}
-      />
-      <Button type="submit">Submit Stock</Button>
-    </form>
+      >
+        <Autocomplete
+          required
+          value={form.values.stock}
+          data={NASDAQ}
+          limit={4}
+          className={classes.addTickerTextInput}
+          onChange={(event) => {
+            form.setFieldValue("stock", event);
+          }}
+          label="Stock Ticker"
+        />
+        <NumberInput
+          onChange={(event) => {
+            form.setFieldValue("holdings", event);
+          }}
+          value={form.values.holdings}
+          defaultValue={form.values.holdings}
+          placeholder="Your current number of holdings"
+          label="Stock Holdings"
+          stepHoldDelay={500}
+          stepHoldInterval={(t) => Math.max(1000 / 2 ** t, 25)}
+          className={classes.addTickerNumberInput}
+          required
+        />
+        <Button type="submit" className={classes.addTickerButton}>
+          Submit Stock
+        </Button>
+      </form>
+    </Box>
   );
 };

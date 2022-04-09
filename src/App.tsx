@@ -11,6 +11,7 @@ import { useHotkeys, useLocalStorage } from "@mantine/hooks";
 import { ExpenseComponentsGrid } from "./ExpenseComponentsGrid";
 import { Hero } from "./HeroSection/Hero";
 import { IStock } from "./AppTypes";
+import { IUser } from "./Types/IUser";
 import { NavigationBar } from "./NavigationBar/NavigationBar";
 import { RenderInvestments } from "./Stocks/RenderInvestments";
 import { UserContext } from "./UserContext";
@@ -33,7 +34,7 @@ export const App: React.FC = () => {
   const toggleColorScheme = (value?: ColorScheme) =>
     setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
 
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<null | IUser>(null);
   const [userExpenses, setUserExpenses] = useState([]);
   const [stocks, setUserStocks] = useState<IStock[]>([]);
 
@@ -67,7 +68,6 @@ export const App: React.FC = () => {
       <>
         {ExpenseComponentsGrid}
         <RenderInvestments stocks={stocks} />
-        {/* <AddStock></AddStock> */}
       </>
     );
   };
