@@ -59,7 +59,7 @@ export const News = () => {
           { maxWidth: 600, cols: 1, spacing: "sm" },
         ]}
       >
-        {ArticleCardCreator(data.articles.slice(0, 10))}
+        {ArticleCardCreator(data.articles)}
       </SimpleGrid>
     </>
   );
