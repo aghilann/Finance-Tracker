@@ -1,23 +1,32 @@
+import { IArticle, INewsResponseJSON } from "./IArticle";
+
 import { ArticleCard } from "./ArticleCard";
-import { IArticle } from "./IArticle";
 import React from "react";
 import { generateUUID } from "./generateUUID";
 
-export const ArticleCardCreator = (articles: IArticle[]) => {
-  if (articles === undefined || articles === null || articles.length === 0) {
-    return <></>;
-  }
-  return articles.map((article: IArticle) => {
-    let dataObject = {
-      image: article.urlToImage,
-      link: article.url,
-      title: article.title,
-      rating: "outstanding",
-      description: article.description,
-      author: {
-        name: article.author,
-      },
-    };
-    return <ArticleCard {...dataObject} key={generateUUID()} />;
-  });
+export const ArticleCardCreator = (articles: INewsResponseJSON) => {
+  return articles.value
+    .filter(
+      (article) =>
+        article &&
+        article.image &&
+        article.image.thumbnail &&
+        article.image.thumbnail.contentUrl
+    )
+
+    .map((article: IArticle) => {
+      let articleImageUrl;
+
+      let dataObject = {
+        image: articleImageUrl,
+        link: article.url,
+        title: article.name,
+        rating: "outstanding",
+        description: article.description,
+        author: {
+          name: article.provider[0].name,
+        },
+      };
+      return <ArticleCard {...dataObject} key={generateUUID()} />;
+    });
 };

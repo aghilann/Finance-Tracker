@@ -1,13 +1,16 @@
-import React from "react";
-import ReactDOM from "react-dom";
 import "./index.css";
-import { App } from "./App";
+
 import {
-  useQuery,
-  useQueryClient,
   QueryClient,
   QueryClientProvider,
+  useQuery,
+  useQueryClient,
 } from "react-query";
+
+import { App } from "./App";
+import React from "react";
+import ReactDOM from "react-dom";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 const queryClient = new QueryClient();
 
@@ -16,6 +19,7 @@ ReactDOM.render(
     <React.StrictMode>
       <App />
     </React.StrictMode>
+    <ReactQueryDevtools initialIsOpen={false} />
   </QueryClientProvider>,
   document.getElementById("root")
 );

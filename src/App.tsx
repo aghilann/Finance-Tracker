@@ -118,8 +118,8 @@ export const App: React.FC = () => {
             <NavigationBar links={links} />
             {!!user || displayWhenLoggedOut}
             {user == null || displayWhenSignedIn(stocks)}
-            <Button onClick={changeColor}>Click Me</Button>
             <News></News>
+            <Button onClick={changeColor}>Click Me</Button>
           </UserContext.Provider>
         </div>
       </MantineProvider>
