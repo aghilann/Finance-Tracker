@@ -97,7 +97,7 @@ export const AddStock: React.FC<IProps> = ({ stocks, setQuotes }) => {
         <Autocomplete
           required
           value={form.values.stock}
-          data={NASDAQ}
+          data={NYSE}
           limit={4}
           className={classes.addTickerTextInput}
           onChange={(event) => {
