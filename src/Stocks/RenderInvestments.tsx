@@ -109,7 +109,3 @@ export const RenderInvestments: React.FC<IProps> = ({ stocks }) => {
     </div>
   );
 };
-// TODO: Add graph for total value of investments
-function https(https: Http2ServerRequest): Response | Promise<Response> {
-  throw new Error("Function not implemented.");
-}
