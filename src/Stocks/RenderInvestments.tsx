@@ -10,7 +10,6 @@ import {
 import React, { useContext, useEffect, useState } from "react";
 
 import { AddStock } from "../AddStock/AddStock";
-import { Http2ServerRequest } from "http2";
 import { IStock } from "../AppTypes";
 import PortfolioChart from "./PortfolioChart";
 import { UserContext } from "../UserContext";
