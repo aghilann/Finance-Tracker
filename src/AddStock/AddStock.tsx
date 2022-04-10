@@ -5,7 +5,7 @@ import {
   NumberInput,
   createStyles,
 } from "@mantine/core";
-import { BaseSyntheticEvent, useContext, useState } from "react";
+import { BaseSyntheticEvent, useContext, useEffect, useState } from "react";
 
 import { NASDAQ } from "./StockList";
 import { UserContext } from "../UserContext";
@@ -75,11 +75,13 @@ export const AddStock: React.FC<IProps> = ({ stocks, setQuotes }) => {
       .eq("id", user.id);
   }
 
+  useEffect(() => null, [stocks]);
+
   return (
     <Box>
       <form
         onSubmit={(event: BaseSyntheticEvent) => {
-          // event.preventDefault(); TODO: Update UI without refresh
+          event.preventDefault(); // TODO: Update UI without refresh
           const newStock = {
             name: form.values.stock,
             holdings: form.values.holdings,
@@ -89,6 +91,7 @@ export const AddStock: React.FC<IProps> = ({ stocks, setQuotes }) => {
           form.setFieldValue("holdings", null);
           console.log("🚀 ~ file: AddStock.tsx ~ line 54 ~ newStock", stocks);
           updateUserStocks(stocks);
+          window.location.reload();
         }}
       >
         <Autocomplete
@@ -101,6 +104,7 @@ export const AddStock: React.FC<IProps> = ({ stocks, setQuotes }) => {
             form.setFieldValue("stock", event);
           }}
           label="Stock Ticker"
+          placeholder="Enter a Stock Ticker"
         />
         <NumberInput
           onChange={(event) => {
@@ -108,7 +112,7 @@ export const AddStock: React.FC<IProps> = ({ stocks, setQuotes }) => {
           }}
           value={form.values.holdings}
           defaultValue={form.values.holdings}
-          placeholder="Your current number of holdings"
+          placeholder="Number of Holdings"
           label="Stock Holdings"
           stepHoldDelay={500}
           stepHoldInterval={(t) => Math.max(1000 / 2 ** t, 25)}

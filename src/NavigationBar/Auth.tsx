@@ -41,13 +41,12 @@ export const IsLoggedIn = () => {
   const { user, setUser } = useContext(UserContext);
   const [session, setSession] = useState(null);
 
-  useEffect(() => {
-    setSession(supabase.auth.session());
-
-    supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-    });
-  }, [user]);
+  // useEffect(() => {
+  //   setSession(supabase.auth.session());
+  //   supabase.auth.onAuthStateChange((_event, session) => {
+  //     setSession(session);
+  //   });
+  // }, [user]);
 
   useEffect(() => {
     checkUser();

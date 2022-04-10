@@ -1,5 +1,5 @@
-import { MantineThemeBase } from "@mantine/core";
 import { DEFAULT_COLORS } from "./default-colors";
+import { MantineThemeBase } from "@mantine/core";
 
 export const _DEFAULT_THEME: MantineThemeBase = {
   dir: "ltr",

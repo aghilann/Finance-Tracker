@@ -1,11 +1,13 @@
 import "./App.css";
 
+import { BaseSyntheticEvent, useEffect, useState } from "react";
 import {
+  Button,
   ColorScheme,
   ColorSchemeProvider,
   MantineProvider,
+  MantineThemeBase,
 } from "@mantine/core";
-import { useEffect, useState } from "react";
 import { useHotkeys, useLocalStorage } from "@mantine/hooks";
 
 import { ExpenseComponentsGrid } from "./ExpenseComponentsGrid";
@@ -13,6 +15,7 @@ import { Hero } from "./HeroSection/Hero";
 import { IStock } from "./AppTypes";
 import { IUser } from "./Types/IUser";
 import { NavigationBar } from "./NavigationBar/NavigationBar";
+import { News } from "./News/News";
 import { RenderInvestments } from "./Stocks/RenderInvestments";
 import { UserContext } from "./UserContext";
 import { _DEFAULT_THEME } from "./Data/ThemeObject";
@@ -80,13 +83,26 @@ export const App: React.FC = () => {
     </div>
   );
 
+  const [colorTheme, setColorTheme] =
+    useState<MantineThemeBase>(_DEFAULT_THEME);
+
+  const changeColor = (event: BaseSyntheticEvent) => {
+    setColorTheme((prevState: MantineThemeBase) => {
+      return prevState.primaryColor == "blue"
+        ? { ...prevState, primaryColor: "red" }
+        : { ...prevState, primaryColor: "blue" };
+    });
+  };
+
+  console.log("STATE REFRESH");
+
   return (
     <ColorSchemeProvider
       colorScheme={colorScheme}
       toggleColorScheme={toggleColorScheme}
     >
       <MantineProvider
-        theme={{ ..._DEFAULT_THEME, colorScheme: colorScheme }}
+        theme={{ ...colorTheme, colorScheme: colorScheme }}
         withGlobalStyles
       >
         <div className="App">
@@ -101,8 +117,9 @@ export const App: React.FC = () => {
           >
             <NavigationBar links={links} />
             {!!user || displayWhenLoggedOut}
-
             {user == null || displayWhenSignedIn(stocks)}
+            <Button onClick={changeColor}>Click Me</Button>
+            <News></News>
           </UserContext.Provider>
         </div>
       </MantineProvider>

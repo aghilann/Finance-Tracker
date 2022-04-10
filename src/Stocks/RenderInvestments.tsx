@@ -14,7 +14,6 @@ import { Http2ServerRequest } from "http2";
 import { IStock } from "../AppTypes";
 import PortfolioChart from "./PortfolioChart";
 import { UserContext } from "../UserContext";
-import axios from "axios";
 import { data } from "../Expenses/ViewExpenses/data";
 import { fetchStocks } from "./fetchStocks";
 import { useQuery } from "react-query";
@@ -49,7 +48,12 @@ export const RenderInvestments: React.FC<IProps> = ({ stocks }) => {
     const DiffIcon =
       stat.regularMarketChangePercent > 0 ? ArrowUpRight : ArrowDownRight;
     return (
-      <Paper withBorder p="md" radius="md" key={stat.longName}>
+      <Paper
+        withBorder
+        p="md"
+        radius="md"
+        key={stat.longName + Math.floor(Math.random() * 100).toString()}
+      >
         <Group position="apart">
           <div>
             <Text
