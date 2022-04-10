@@ -72,9 +72,10 @@ export const AddExpense: React.FC = () => {
       expenseName: (value) =>
         /^(?!\s*$).+/.test(value) ? null : "Enter a Expense Name",
 
-      expenseType: (value) =>
-        /^(?!\s*$).+/.test(value) ? null : "Enter a Expense Name",
-      price: (value) => (value > 0 ? null : "Enter a valid price"),
+      // expenseType: (value) =>
+      //   /^(?!\s*$).+/.test(value) ? null : "Enter a Expense Name",
+
+      //   price: (value) => (value > 0 ? null : "Enter a valid price"),
     },
   });
 
@@ -141,7 +142,7 @@ export const AddExpense: React.FC = () => {
           value={form.values.price}
           {...form.getInputProps("price")}
           onChange={(event) => {
-            form.setFieldValue("price", event);
+            form.setFieldValue("price", parseInt(event.toString()));
           }}
         />
         <Container style={{ marginTop: 15, marginLeft: -15 }}>

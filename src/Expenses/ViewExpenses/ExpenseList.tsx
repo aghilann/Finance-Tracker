@@ -11,7 +11,6 @@ import { data, useStyles } from "./data";
 import { UserContext } from "../../UserContext";
 import { expenseItem } from "../../App";
 import { forEach } from "lodash";
-import { isArray } from "util";
 import { _DEFAULT_THEME as theme } from "../../Data/ThemeObject";
 import { useEffect } from "react";
 
