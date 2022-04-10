@@ -74,8 +74,7 @@ export const AddExpense: React.FC = () => {
 
       expenseType: (value) =>
         /^(?!\s*$).+/.test(value) ? null : "Enter a Expense Name",
-      price: (value) =>
-        /^\d+$/.test(value.toString()) ? null : "Enter a valid price",
+      price: (value) => (value > 0 ? null : "Enter a valid price"),
     },
   });
 
