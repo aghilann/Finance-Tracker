@@ -4,6 +4,9 @@ import React from "react";
 import { generateUUID } from "./generateUUID";
 
 export const ArticleCardCreator = (articles: IArticle[]) => {
+  if (articles === undefined || articles === null || articles.length === 0) {
+    return <></>;
+  }
   return articles.map((article: IArticle) => {
     let dataObject = {
       image: article.urlToImage,
