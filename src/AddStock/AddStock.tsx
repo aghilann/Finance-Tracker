@@ -7,7 +7,7 @@ import {
 } from "@mantine/core";
 import { BaseSyntheticEvent, useContext, useEffect, useState } from "react";
 
-import { NASDAQ } from "./StockList";
+import { NYSE } from "./StockList";
 import { UserContext } from "../UserContext";
 import { fetchStocks } from "../Stocks/fetchStocks";
 import { supabase } from "../supabaseClient";
