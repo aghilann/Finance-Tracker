@@ -15,10 +15,8 @@ export const ArticleCardCreator = (articles: INewsResponseJSON) => {
     )
 
     .map((article: IArticle) => {
-      let articleImageUrl;
-
       let dataObject = {
-        image: articleImageUrl,
+        image: article.image.thumbnail.contentUrl,
         link: article.url,
         title: article.name,
         rating: "outstanding",

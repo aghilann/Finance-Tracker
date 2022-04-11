@@ -439,14 +439,12 @@ const mockData = {
 
 export const News = () => {
   const { isLoading, error, data } = useQuery("newsData", () => {
-    fetch(
-      "https://bing-news-search1.p.rapidapi.com/news?category=Business&safeSearch=Off&textFormat=Raw",
+    return fetch(
+      "https://bing-news-search1.p.rapidapi.com/news/search?q=Finance&freshness=Day&textFormat=Raw&safeSearch=Off",
       options
-    )
-      .then((response) => response.json())
-      .then((response) => console.dir(response));
-    // .catch((err) => console.error(err));
+    ).then((response) => response.json());
   });
+
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
   return (
@@ -459,7 +457,7 @@ export const News = () => {
           { maxWidth: 600, cols: 1, spacing: "sm" },
         ]}
       >
-        {ArticleCardCreator(mockData)}
+        {ArticleCardCreator(data)}
       </SimpleGrid>
     </>
   );
