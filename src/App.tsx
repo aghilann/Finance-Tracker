@@ -52,7 +52,7 @@ export const App: React.FC = () => {
 
   async function fetchUserFinances(): Promise<void> {
     let { data } = await supabase
-      .from("UserFinanceData")
+      .from("userfinancedata")
       .select("Expenses")
       .eq("id", `${user.id}`);
     setUserExpenses(data[0]);
@@ -60,7 +60,7 @@ export const App: React.FC = () => {
 
   async function fetchUserStocks(): Promise<void> {
     let { data, error } = await supabase
-      .from("UserFinanceData")
+      .from("userfinancedata")
       .select("Investments")
       .eq("id", `${user.id}`);
     setUserStocks(data[0].Investments);

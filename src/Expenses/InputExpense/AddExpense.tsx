@@ -57,7 +57,7 @@ export const AddExpense: React.FC = () => {
     updatedExpenses: Array<any>
   ) {
     const { data, error } = await supabase
-      .from("UserFinanceData")
+      .from("userfinancedata")
       .update({ Expenses: updatedExpenses })
       .eq("id", currentUserID);
     fetchUserFinances();
