@@ -5,6 +5,7 @@ import {
   Select,
   TextInput,
   createStyles,
+  useMantineTheme,
 } from "@mantine/core";
 import React, { useContext } from "react";
 
@@ -18,9 +19,6 @@ interface expenseObject {
   expenseType: string;
   price: number;
 }
-
-let gradientOne = theme.colors[theme.primaryColor][4];
-let gradientTwo = theme.colors[theme.primaryColor][7];
 
 const useStyles = createStyles((theme) => ({
   root: {
@@ -48,6 +46,11 @@ export const AddExpense: React.FC = () => {
   const { classes } = useStyles();
   const { userExpenses, setUserExpenses, user, setUser, fetchUserFinances } =
     useContext(UserContext);
+
+  const theme = useMantineTheme();
+
+  let gradientOne = theme.colors[theme.primaryColor][4];
+  let gradientTwo = theme.colors[theme.primaryColor][7];
 
   async function updateUserFinances(
     currentUserID: string,
