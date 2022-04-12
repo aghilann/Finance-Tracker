@@ -12,11 +12,13 @@ import { useHotkeys, useLocalStorage } from "@mantine/hooks";
 
 import { ExpenseComponentsGrid } from "./ExpenseComponentsGrid";
 import { Hero } from "./HeroSection/Hero";
+import { IColor } from "./Types/IColor";
 import { IStock } from "./AppTypes";
 import { IUser } from "./Types/IUser";
 import { NavigationBar } from "./NavigationBar/NavigationBar";
 import { News } from "./News/News";
 import { RenderInvestments } from "./Stocks/RenderInvestments";
+import { ThemePicker } from "./ThemePicker/ThemePicker";
 import { UserContext } from "./UserContext";
 import { _DEFAULT_THEME } from "./Data/ThemeObject";
 import { links } from "./Data/NavbarData";
@@ -27,7 +29,7 @@ export interface expenseItem {
   category: string;
   price: number;
 }
-
+console.log(Object.keys(_DEFAULT_THEME.colors));
 export const App: React.FC = () => {
   const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
     key: "mantine-color-scheme",
@@ -115,9 +117,15 @@ export const App: React.FC = () => {
               fetchUserFinances,
             }}
           >
-            <NavigationBar links={links} />
+            <NavigationBar links={links}>
+              <ThemePicker
+                colorTheme={colorTheme}
+                setColorTheme={setColorTheme}
+              />
+            </NavigationBar>
             {!!user || displayWhenLoggedOut}
             {user == null || displayWhenSignedIn(stocks)}
+
             <News></News>
             <Button onClick={changeColor}>Click Me</Button>
           </UserContext.Provider>

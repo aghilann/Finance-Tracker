@@ -1,7 +1,7 @@
 import { Burger, Container, Group, Header, createStyles } from "@mantine/core";
+import { Children, ReactNode } from "react";
 import React, { useState } from "react";
 
-import { Children } from "react";
 import { IsLoggedIn } from "./Auth";
 import { ThemeButton } from "./ThemeButton";
 import { useBooleanToggle } from "@mantine/hooks";
@@ -61,9 +61,10 @@ const useStyles = createStyles((theme) => ({
 
 interface HeaderSimpleProps {
   links: { link: string; label: string }[];
+  children: ReactNode;
 }
 
-export function NavigationBar({ links }: HeaderSimpleProps) {
+export function NavigationBar({ links, children }: HeaderSimpleProps) {
   const [opened, toggleOpened] = useBooleanToggle(false);
   const [active, setActive] = useState(links[0].link);
   const { classes, cx } = useStyles();
@@ -96,8 +97,9 @@ export function NavigationBar({ links }: HeaderSimpleProps) {
           className={classes.burger}
           size="sm"
         />
-        <ThemeButton></ThemeButton>
-        <IsLoggedIn></IsLoggedIn>
+        <ThemeButton />
+        <IsLoggedIn />
+        {children}
       </Container>
     </Header>
   );

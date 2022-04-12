@@ -1,5 +1,6 @@
 import { ArrowDownRight, ArrowUpRight } from "tabler-icons-react";
 import {
+  Container,
   Group,
   Paper,
   SimpleGrid,
@@ -104,8 +105,8 @@ export const RenderInvestments: React.FC<IProps> = ({ stocks }) => {
       <SimpleGrid cols={3} breakpoints={[{ maxWidth: "sm", cols: 1 }]}>
         {stats}
         <AddStock stocks={stocks} setQuotes={setQuotes} />
+        <PortfolioChart stocks={stocks} quotes={quotes} />
       </SimpleGrid>
-      <PortfolioChart stocks={stocks} quotes={quotes} />
     </div>
   );
 };

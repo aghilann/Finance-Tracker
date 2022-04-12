@@ -11,7 +11,6 @@ import React, { useContext } from "react";
 
 import { UserContext } from "../../UserContext";
 import { supabase } from "../../supabaseClient";
-import { _DEFAULT_THEME as theme } from "../../Data/ThemeObject";
 import { useForm } from "@mantine/form";
 
 interface expenseObject {
