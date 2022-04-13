@@ -13,7 +13,7 @@ import { useHotkeys, useLocalStorage } from "@mantine/hooks";
 import { ExpenseComponentsGrid } from "./ExpenseComponentsGrid";
 import { Hero } from "./HeroSection/Hero";
 import { IColor } from "./Types/IColor";
-import { IStock } from "./AppTypes";
+import { IStock } from "./Stocks/AppTypes";
 import { IUser } from "./Types/IUser";
 import { NavigationBar } from "./NavigationBar/NavigationBar";
 import { News } from "./News/News";
@@ -29,7 +29,6 @@ export interface expenseItem {
   category: string;
   price: number;
 }
-console.log(Object.keys(_DEFAULT_THEME.colors));
 export const App: React.FC = () => {
   const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
     key: "mantine-color-scheme",
@@ -95,8 +94,6 @@ export const App: React.FC = () => {
         : { ...prevState, primaryColor: "blue" };
     });
   };
-
-  console.log("STATE REFRESH");
 
   return (
     <ColorSchemeProvider

@@ -11,7 +11,7 @@ import {
 import React, { useContext, useEffect, useState } from "react";
 
 import { AddStock } from "../AddStock/AddStock";
-import { IStock } from "../AppTypes";
+import { IStock } from "./AppTypes";
 import PortfolioChart from "./PortfolioChart";
 import { UserContext } from "../UserContext";
 import { data } from "../Expenses/ViewExpenses/data";

@@ -47,7 +47,6 @@ interface IProps {
 }
 
 export const AddStock: React.FC<IProps> = ({ stocks, setQuotes }) => {
-  // console.log("🚀 ~ file: AddStock.tsx ~ line 22 ~ stocks", stocks);
   const { user, fetchUserFinances } = useContext(UserContext);
   const { classes } = useStyles();
   const [value, setValue] = useState("");
@@ -63,14 +62,14 @@ export const AddStock: React.FC<IProps> = ({ stocks, setQuotes }) => {
     },
   });
 
-  async function updateUserStocks(updatedStocks: stockType[]): Promise<any> {
-    console.log(
-      "🚀 ~ file: AddStock.tsx ~ line 44 ~ updateUserStocks ~ updatedStocks",
-      updatedStocks
-    );
+  async function updateUserStocks(updatedStocks: stockType[]): Promise<void> {
+    // console.log(
+    // "🚀 ~ file: AddStock.tsx ~ line 44 ~ updateUserStocks ~ updatedStocks",
+    // updatedStocks
+    // );
 
     const { data, error } = await supabase
-      .from("UserFinanceData")
+      .from("userfinancedata")
       .update({ Investments: updatedStocks })
       .eq("id", user.id);
   }
@@ -89,7 +88,7 @@ export const AddStock: React.FC<IProps> = ({ stocks, setQuotes }) => {
           stocks.push(newStock);
           form.setFieldValue("stock", null);
           form.setFieldValue("holdings", null);
-          console.log("🚀 ~ file: AddStock.tsx ~ line 54 ~ newStock", stocks);
+          // console.log("🚀 ~ file: AddStock.tsx ~ line 54 ~ newStock", stocks);
           updateUserStocks(stocks);
           window.location.reload();
         }}

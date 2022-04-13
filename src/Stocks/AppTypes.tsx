@@ -8,10 +8,4 @@ export interface ExpenseList {
 
 export type expenseItem = undefined | { string: number };
 
-export const BaseExpense: ExpenseList = {
-  Food: [],
-  Entertainment: [],
-  Miscellaneous: [],
-};
-
 export type IStock = { name: string; holdings: number };
