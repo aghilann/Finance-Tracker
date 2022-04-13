@@ -10,7 +10,7 @@ import {
 } from "@mantine/core";
 import { useHotkeys, useLocalStorage } from "@mantine/hooks";
 
-import { ExpenseComponentsGrid } from "./ExpenseComponentsGrid";
+import { ExpenseComponentsGrid } from "./ExpenseComponentsGrid/ExpenseComponentsGrid";
 import { Hero } from "./HeroSection/Hero";
 import { IColor } from "./Types/IColor";
 import { IStock } from "./Stocks/AppTypes";
@@ -19,10 +19,10 @@ import { NavigationBar } from "./NavigationBar/NavigationBar";
 import { News } from "./News/News";
 import { RenderInvestments } from "./Stocks/RenderInvestments";
 import { ThemePicker } from "./ThemePicker/ThemePicker";
-import { UserContext } from "./UserContext";
+import { UserContext } from "./Context/UserContext";
 import { _DEFAULT_THEME } from "./Data/ThemeObject";
 import { links } from "./Data/NavbarData";
-import { supabase } from "./supabaseClient";
+import { supabase } from "./Supabase/supabaseClient";
 
 export interface expenseItem {
   name: string;
@@ -87,14 +87,6 @@ export const App: React.FC = () => {
   const [colorTheme, setColorTheme] =
     useState<MantineThemeBase>(_DEFAULT_THEME);
 
-  const changeColor = (event: BaseSyntheticEvent) => {
-    setColorTheme((prevState: MantineThemeBase) => {
-      return prevState.primaryColor == "blue"
-        ? { ...prevState, primaryColor: "red" }
-        : { ...prevState, primaryColor: "blue" };
-    });
-  };
-
   return (
     <ColorSchemeProvider
       colorScheme={colorScheme}
@@ -122,9 +114,7 @@ export const App: React.FC = () => {
             </NavigationBar>
             {!!user || displayWhenLoggedOut}
             {user == null || displayWhenSignedIn(stocks)}
-
-            <News></News>
-            <Button onClick={changeColor}>Click Me</Button>
+            <News />
           </UserContext.Provider>
         </div>
       </MantineProvider>

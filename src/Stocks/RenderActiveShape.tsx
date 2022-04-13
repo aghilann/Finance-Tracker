@@ -59,7 +59,9 @@ export const renderActiveShape = (props: any) => {
         y={ey}
         textAnchor={textAnchor}
         fill={fill}
-      >{`$${Math.trunc(value)}`}</text>
+      >
+        {`$${Math.trunc(value)}`}
+      </text>
     </g>
   );
 };

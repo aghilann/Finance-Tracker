@@ -65,10 +65,6 @@ const PortfolioChart: React.FC<IProps> = ({ quotes, stocks }) => {
           onMouseEnter={onPieEnter}
           isAnimationActive={true}
         />
-        <Tooltip
-          active={true}
-          wrapperStyle={{ width: 10, backgroundColor: "#ccc" }}
-        />
       </PieChart>
     </div>
   );

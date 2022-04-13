@@ -18,7 +18,7 @@ export const fetchStocks = (
     method: "GET",
     headers: {
       "X-RapidAPI-Host": "mboum-finance.p.rapidapi.com",
-      "X-RapidAPI-Key": "ea7888ed26msh18522a4aeb01c8bp1ca26fjsncd5193fd369a",
+      "X-RapidAPI-Key": "bf5d4f95e7msheb9fa35fb111fb6p1d2751jsnb97cb082174b",
     },
   };
   fetch(`https://mboum-finance.p.rapidapi.com/qu/quote?symbol=${url}`, options)

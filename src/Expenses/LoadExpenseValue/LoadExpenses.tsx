@@ -1,9 +1,11 @@
-import { useContext, useEffect } from "react";
-import { UserContext } from "../../UserContext";
-import React from "react";
-import { Container, Text } from "@mantine/core";
-import { useStyles, GetValues, StatsGroupProps } from "./useStyles";
 import "../../App.css";
+
+import { Container, Text } from "@mantine/core";
+import { GetValues, StatsGroupProps, useStyles } from "./useStyles";
+import { useContext, useEffect } from "react";
+
+import React from "react";
+import { UserContext } from "../../Context/UserContext";
 
 let foodSum: number | unknown = 0;
 let entertainmentSum: number | unknown = 0;

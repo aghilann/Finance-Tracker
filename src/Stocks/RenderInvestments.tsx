@@ -13,7 +13,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { AddStock } from "../AddStock/AddStock";
 import { IStock } from "./AppTypes";
 import PortfolioChart from "./PortfolioChart";
-import { UserContext } from "../UserContext";
+import { UserContext } from "../Context/UserContext";
 import { data } from "../Expenses/ViewExpenses/data";
 import { fetchStocks } from "./fetchStocks";
 import { useQuery } from "react-query";

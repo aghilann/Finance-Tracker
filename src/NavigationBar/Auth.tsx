@@ -2,8 +2,8 @@ import { Button, ButtonProps, Group, Text } from "@mantine/core";
 import { useEffect, useState } from "react";
 
 import { MarkGithubIcon } from "@primer/octicons-react";
-import { UserContext } from "../UserContext";
-import { supabase } from "../supabaseClient";
+import { UserContext } from "../Context/UserContext";
+import { supabase } from "../Supabase/supabaseClient";
 import { useContext } from "react";
 
 interface IProps {

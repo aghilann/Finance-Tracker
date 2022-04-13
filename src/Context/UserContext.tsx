@@ -1,4 +1,4 @@
-import { ExpenseList, JSONResponse } from "./Stocks/AppTypes";
+import { ExpenseList, JSONResponse } from "../Stocks/AppTypes";
 
 import { createContext } from "react";
 

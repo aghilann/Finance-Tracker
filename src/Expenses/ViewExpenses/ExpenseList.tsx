@@ -8,7 +8,7 @@ import {
 import React, { useContext, useState } from "react";
 import { data, useStyles } from "./data";
 
-import { UserContext } from "../../UserContext";
+import { UserContext } from "../../Context/UserContext";
 import { expenseItem } from "../../App";
 import { forEach } from "lodash";
 import { _DEFAULT_THEME as theme } from "../../Data/ThemeObject";
