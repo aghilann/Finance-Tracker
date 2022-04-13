@@ -7,7 +7,6 @@ import {
 } from "@mantine/core";
 import { Radio, RadioGroup } from "@mantine/core";
 
-import { CheckIcon } from "@modulz/radix-icons";
 import { Container } from "@mantine/core";
 import { DEFAULT_COLORS } from "../Data/default-colors";
 import { MantineThemeBase } from "@mantine/core";
@@ -50,7 +49,7 @@ export const ThemePicker: React.FC<IProps> = ({
         }}
         style={{ color: "#fff", cursor: "pointer" }}
       >
-        {colorTheme.primaryColor === color && <CheckIcon />}
+        {colorTheme.primaryColor === color && null}
       </ColorSwatch>
     )
   );

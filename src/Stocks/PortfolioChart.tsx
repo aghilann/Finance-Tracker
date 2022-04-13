@@ -58,7 +58,7 @@ const PortfolioChart: React.FC<IProps> = ({ quotes, stocks }) => {
           data={data}
           cx={window.screen.width / 2}
           cy={window.screen.width / 10}
-          innerRadius={window.screen.width / 15}
+          innerRadius={window.screen.width / 18}
           outerRadius={window.screen.width / 12}
           fill={gradientTwo}
           dataKey="value"
