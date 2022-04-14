@@ -53,7 +53,7 @@ export const AddExpense: React.FC = () => {
 
   async function updateUserFinances(
     currentUserID: string,
-    updatedExpenses: Array<any>
+    updatedExpenses: expenseObject[]
   ) {
     const { data, error } = await supabase
       .from("userfinancedata")
@@ -73,11 +73,9 @@ export const AddExpense: React.FC = () => {
     validate: {
       expenseName: (value) =>
         /^(?!\s*$).+/.test(value) ? null : "Enter a Expense Name",
-
-      // expenseType: (value) =>
-      //   /^(?!\s*$).+/.test(value) ? null : "Enter a Expense Name",
-
-      //   price: (value) => (value > 0 ? null : "Enter a valid price"),
+      expenseType: (value) =>
+        /^(?!\s*$).+/.test(value) ? null : "Enter a Expense Type",
+      price: (value) => (value > 0 ? null : "Enter a valid price"),
     },
   });
 

@@ -2,6 +2,7 @@ import { AddExpense } from "../Expenses/InputExpense/AddExpense";
 import { ExpenseTable } from "../Expenses/ViewExpenses/ExpenseList";
 import { Grid } from "@mantine/core";
 import { LoadExpenses } from "../Expenses/LoadExpenseValue/LoadExpenses";
+import react from "react";
 
 export const ExpenseComponentsGrid = (
   <Grid grow>
