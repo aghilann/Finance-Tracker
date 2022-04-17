@@ -120,6 +120,7 @@ Ensure you have the latest version of NodeJS and npm installed. This project use
 - [x] Navigation Bar
   - [x] Implented Auth via Supabase Auth
   - [x] Added Light and Dark Mode functionality using Mantine
+  - [x] Select a global color scheme 
 - [x] Expenses
   - [x] Viewing Total's for Expense Categories
   - [x] Created a rendering of the Expense Table
