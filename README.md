@@ -17,14 +17,6 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
-
-
 
 <!-- PROJECT LOGO -->
 <br />
@@ -33,19 +25,15 @@
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">project_title</h3>
+<h3 align="center">Personal Finance Tracker</h3>
 
   <p align="center">
-    project_description
-    <br />
-    <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
+    A dashboard to view your expenses, the value of your investments and the diversity of your portfolio.
     <br />
     <br />
-    <a href="https://github.com/github_username/repo_name">View Demo</a>
+    <br />
+    <a href="https://lucent-bubblegum-e9911a.netlify.app/">View Production Site</a>
     ·
-    <a href="https://github.com/github_username/repo_name/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/github_username/repo_name/issues">Request Feature</a>
   </p>
 </div>
 
@@ -92,14 +80,11 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 
 ### Built With
 
-* [Next.js](https://nextjs.org/)
 * [React.js](https://reactjs.org/)
-* [Vue.js](https://vuejs.org/)
-* [Angular](https://angular.io/)
-* [Svelte](https://svelte.dev/)
-* [Laravel](https://laravel.com)
-* [Bootstrap](https://getbootstrap.com)
-* [JQuery](https://jquery.com)
+* [TypeScript](https://www.typescriptlang.org/)
+* [Mantine](https://mantine.dev/)
+* [Supabase](https://supabase.com/)
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -108,23 +93,14 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
-
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+Ensure you have the latest version of NodeJS and npm installed. This project uses Vite so some of the commands you may be used to would be different.
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
+1. Get a free API Key at [Supabase](https://supabase.com/)
 2. Clone the repo
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+   git clone https://github.com/aghilann/Finance-Tracker.git
    ```
 3. Install NPM packages
    ```sh
@@ -138,25 +114,24 @@ This is an example of how to list things you need to use the software and how to
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
+- [x] Navigation Bar
+  - [x] Implented Auth via Supabase Auth
+  - [x] Added Light and Dark Mode functionality using Mantine
+- [x] Expenses
+  - [x] Viewing Total's for Expense Categories
+  - [x] Created a rendering of the Expense Table
+  - [x] Added ability for user's to add Expenses
+- [x] Investments
+  - [x] Added the ability for User to add stock investments and their number of holdings
+  - [x] Implemented Autocomplete Functionality for stocks
+  - [x] Used React Query to fetch latest stock prices from Yahoo Finance API 
+  - [x] Created Grid of Cards displaying the latest value of each Stock
+  - [x] Visualized Portfolio Diversity using a Piechart from ReCharts
+- [x] Finance News
+  - [x] Used React Query to receive data from Microsft Azure News API display the headlines with the author, thumbnail and preview.      
 
 See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
 
@@ -194,23 +169,9 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
-
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+Aghilan Nathan - nathanaghilan@gmail.com
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-* []()
-* []()
-* []()
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
