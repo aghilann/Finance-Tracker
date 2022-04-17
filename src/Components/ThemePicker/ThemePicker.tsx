@@ -8,7 +8,7 @@ import {
 import { Radio, RadioGroup } from "@mantine/core";
 
 import { Container } from "@mantine/core";
-import { DEFAULT_COLORS } from "../Data/default-colors";
+import { DEFAULT_COLORS } from "../../Data/default-colors";
 import { MantineThemeBase } from "@mantine/core";
 import { Popover } from "@mantine/core";
 import React from "react";

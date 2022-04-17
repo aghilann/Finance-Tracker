@@ -8,10 +8,10 @@ import {
 import React, { useContext, useState } from "react";
 import { data, useStyles } from "./data";
 
-import { UserContext } from "../../Context/UserContext";
-import { expenseItem } from "../../App";
+import { UserContext } from "../../../Context/UserContext";
+import { expenseItem } from "../../../App";
 import { forEach } from "lodash";
-import { _DEFAULT_THEME as theme } from "../../Data/ThemeObject";
+import { _DEFAULT_THEME as theme } from "../../../Data/ThemeObject";
 import { useEffect } from "react";
 
 export const ExpenseTable: React.FC = () => {

@@ -8,8 +8,8 @@ import {
 import { BaseSyntheticEvent, useContext, useEffect, useState } from "react";
 
 import { NYSE } from "./StockList";
-import { UserContext } from "../Context/UserContext";
-import { supabase } from "../Supabase/supabaseClient";
+import { UserContext } from "../../Context/UserContext";
+import { supabase } from "../../Supabase/supabaseClient";
 import { useForm } from "@mantine/form";
 
 interface stockType {

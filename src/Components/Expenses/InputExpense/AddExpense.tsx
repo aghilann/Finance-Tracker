@@ -9,8 +9,8 @@ import {
 } from "@mantine/core";
 import React, { useContext } from "react";
 
-import { UserContext } from "../../Context/UserContext";
-import { supabase } from "../../Supabase/supabaseClient";
+import { UserContext } from "../../../Context/UserContext";
+import { supabase } from "../../../Supabase/supabaseClient";
 import { useForm } from "@mantine/form";
 
 interface expenseObject {

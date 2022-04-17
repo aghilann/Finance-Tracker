@@ -10,15 +10,15 @@ import {
 } from "@mantine/core";
 import { useHotkeys, useLocalStorage } from "@mantine/hooks";
 
-import { ExpenseComponentsGrid } from "./ExpenseComponentsGrid/ExpenseComponentsGrid";
-import { Hero } from "./HeroSection/Hero";
+import { ExpenseComponentsGrid } from "./Components/ExpenseComponentsGrid/ExpenseComponentsGrid";
+import { Hero } from "./Components/HeroSection/Hero";
 import { IColor } from "./Types/IColor";
-import { IStock } from "./Stocks/AppTypes";
+import { IStock } from "./Components/Stocks/AppTypes";
 import { IUser } from "./Types/IUser";
-import { NavigationBar } from "./NavigationBar/NavigationBar";
-import { News } from "./News/News";
-import { RenderInvestments } from "./Stocks/RenderInvestments";
-import { ThemePicker } from "./ThemePicker/ThemePicker";
+import { NavigationBar } from "./Components/NavigationBar/NavigationBar";
+import { News } from "./Components/News/News";
+import { RenderInvestments } from "./Components/Stocks/RenderInvestments";
+import { ThemePicker } from "./Components/ThemePicker/ThemePicker";
 import { UserContext } from "./Context/UserContext";
 import { _DEFAULT_THEME } from "./Data/ThemeObject";
 import { links } from "./Data/NavbarData";
