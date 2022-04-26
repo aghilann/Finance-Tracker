@@ -28,6 +28,7 @@ export interface expenseItem {
   name: string;
   category: string;
   price: number;
+  id: string;
 }
 export const App: React.FC = () => {
   const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({

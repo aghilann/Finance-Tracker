@@ -31,8 +31,8 @@ const stockHoldingsXPrice = (
 };
 
 const PortfolioChart: React.FC<IProps> = ({ quotes, stocks }) => {
-  console.log("🚀 ~ file: PortfolioChart.tsx ~ line 34 ~ stocks", stocks);
-  console.log("🚀 ~ file: PortfolioChart.tsx ~ line 34 ~ quotes", quotes);
+  // console.log("🚀 ~ file: PortfolioChart.tsx ~ line 34 ~ stocks", stocks);
+  // console.log("🚀 ~ file: PortfolioChart.tsx ~ line 34 ~ quotes", quotes);
   const [activeIndex, setActiveIndex] = useState(0);
 
   const onPieEnter = useCallback(

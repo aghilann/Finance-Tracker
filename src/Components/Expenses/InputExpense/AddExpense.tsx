@@ -84,10 +84,12 @@ export const AddExpense: React.FC = () => {
     const name: string = expenseObject.expenseName;
     const price: number = expenseObject.price;
     if (userExpenses !== undefined && userExpenses.Expenses !== undefined) {
+      const uuid = Math.random().toString(36).substring(2, 15);
       const newExpense = {
         category: expenseType,
         name: name,
         price: price,
+        id: uuid,
       };
 
       const newExpenses = [...userExpenses.Expenses, newExpense];

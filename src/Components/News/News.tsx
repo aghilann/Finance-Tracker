@@ -9,7 +9,7 @@ const options = {
   headers: {
     "X-BingApis-SDK": "true",
     "X-RapidAPI-Host": "bing-news-search1.p.rapidapi.com",
-    "X-RapidAPI-Key": "ea7888ed26msh18522a4aeb01c8bp1ca26fjsncd5193fd369a",
+    "X-RapidAPI-Key": "ed1f4b6ebemshab314ab6fa46a56p1f26d6jsn703da1ecf01b",
   },
 };
 

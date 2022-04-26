@@ -89,14 +89,6 @@ export const ArticleCard = ({
         </a>
       </Card.Section>
 
-      <Badge
-        className={classes.rating}
-        variant="gradient"
-        gradient={{ from: "yellow", to: "red" }}
-      >
-        {rating}
-      </Badge>
-
       <Text className={classes.title} weight={500} component="a" {...linkProps}>
         {title}
       </Text>
@@ -113,18 +105,6 @@ export const ArticleCard = ({
         </Center>
 
         <Group spacing={8} mr={0}>
-          <ActionIcon
-            className={classes.action}
-            style={{ color: theme.colors.red[6] }}
-          >
-            <Heart size={16} />
-          </ActionIcon>
-          <ActionIcon
-            className={classes.action}
-            style={{ color: theme.colors.yellow[7] }}
-          >
-            <Bookmark size={16} />
-          </ActionIcon>
           <ActionIcon className={classes.action}>
             <Share size={16} />
           </ActionIcon>
