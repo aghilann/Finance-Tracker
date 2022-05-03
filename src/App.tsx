@@ -10,6 +10,7 @@ import {
 } from "@mantine/core";
 import { useHotkeys, useLocalStorage } from "@mantine/hooks";
 
+import { CloudFog } from "tabler-icons-react";
 import { ExpenseComponentsGrid } from "./Components/ExpenseComponentsGrid/ExpenseComponentsGrid";
 import { Hero } from "./Components/HeroSection/Hero";
 import { IColor } from "./Types/IColor";
@@ -73,6 +74,7 @@ export const App: React.FC = () => {
       <>
         {ExpenseComponentsGrid}
         <RenderInvestments stocks={stocks} />
+        <News />
       </>
     );
   };
@@ -115,7 +117,6 @@ export const App: React.FC = () => {
             </NavigationBar>
             {!!user || displayWhenLoggedOut}
             {user == null || displayWhenSignedIn(stocks)}
-            <News />
           </UserContext.Provider>
         </div>
       </MantineProvider>
