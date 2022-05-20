@@ -1,4 +1,4 @@
-import "../../App.css"
+import "../../App.css";
 
 import {
   Button,
@@ -131,9 +131,7 @@ export function Hero() {
                     "https://github.com/aghilann/Finance-Tracker"
                   )
                 }
-              >
-                Source Code
-              </Button>
+              ></Button>
             </Group>
           </div>
           <Image src={image} className={classes.image} />

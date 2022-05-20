@@ -31,7 +31,8 @@
     "readme-md-generator": "^1.0.0",
     "recharts": "^2.1.9",
     "supabase": "^0.5.0",
-    "tabler-icons-react": "^1.37.0"
+    "tabler-icons-react": "^1.37.0",
+    "ws": "^8.6.0"
   },
   "devDependencies": {
     "@types/node": "^17.0.23",
