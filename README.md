@@ -27,10 +27,7 @@
 
 <h3 align="center">Personal Finance Tracker</h3>
 
-  <p align="center">
-    
-    A dashboard to add and view your expenses and how much you have spent in each category. Also allows users to add investments which who's value is updated in real-time utilizing a 3rd party stock market API and renders a piechart to showcase the portfolio diversity of the user.
-    <p>
+  <p align="center">A dashboard to add and view your expenses and how much you have spent in each category. Also allows users to add investments which who's value is updated in real-time utilizing a 3rd party stock market API and renders a piechart to showcase the portfolio diversity of the user.<p>
     <br />
     <br />
     <br />
